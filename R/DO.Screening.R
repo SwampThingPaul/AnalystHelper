@@ -5,7 +5,7 @@
 #' @export
 #' @return   DO.Screening() assumes the data has a "DateTime.EST" field (date and time stamp), "DO" Field and "Temp" field to determine suitable data. No data is removed just a "UseData" field is added.
 #' @examples
-#' data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00"),DO=c(35,2,3),Temp=c(25,27,3))
+#' data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00")),DO=c(35,2,3),Temp=c(25,27,3))
 #' DO.Screening(data)
 
 DO.Screening=function(data){
