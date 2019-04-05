@@ -35,5 +35,5 @@ edate=as.Date("2002-05-01");
 parameter=25;#Test Number for Phosphate, Total as P (mg/L)
 dat=DBHYDRO_WQ(sdate,edate,"S12A",parameter)
 }
-\keyword{water quality}
-
+\keyword{"water}
+\keyword{quality"}
