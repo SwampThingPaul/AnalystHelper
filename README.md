@@ -9,5 +9,5 @@ Using `library(roxygen2)` and R-studio "R-package Project" I constructed this pa
 
 ```
 install.packages("devtools");# if you do not have it installed on your PC
-devtools::install_github("swampthingpaul/AnalystHelper")
+devtools::install_github("SwampThingPaul/AnalystHelper")
 ```
