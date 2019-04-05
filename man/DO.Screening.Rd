@@ -4,19 +4,35 @@
 \alias{DO.Screening}
 \title{Function to screen dissolved oxygen data within the Everglades Ecosystem prior to evaluating compliance with established water quality standards.}
 \usage{
-DO.Screening(data)
+DO.Screening(DateTime, DO, Temp, data, hour.lims = c(6, 18),
+  max.DO = 20, temp.lims = c(5, 20))
 }
 \arguments{
-\item{data}{data.frame() with DateTime, Dissolved Oxygen (concentration) and Temperature data}
+\item{DateTime}{as.POSIXct date and time}
+
+\item{DO}{Dissolved Oxygen Concentration}
+
+\item{Temp}{Surface water temperature}
+
+\item{data}{data.frame() with DateTime (DateTime.EST), Dissolved Oxygen (concentration; DO) and Temperature (Temp) data.}
+
+\item{hour.lims}{min and max hour to capture "day-time" DO}
+
+\item{max.DO}{Limit to the maximum observed DO for the system}
+
+\item{temp.lims}{limits to water temperature data that seem reasonable based on period of record.}
+
+\item{...}{specify other parameters as needed (min.hour,max.hour,max.DO,min.Temp,max.Temp)}
 }
 \value{
-DO.Screening() assumes the data has a "DateTime.EST" field (date and time stamp), "DO" Field and "Temp" field to determine suitable data. No data is removed just a "UseData" field is added.
+DO.Screening() assumes the data has a "DateTime.EST" field (date and time stamp), "DO" Field and "Temp" field to determine suitable data. Returns a "UseData" response.
 }
 \description{
 Function to screen dissolved oxygen data within the Everglades Ecosystem prior to evaluating compliance with established water quality standards.
 }
 \examples{
-data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00")),DO=c(35,2,3),Temp=c(25,27,3))
-DO.Screening(data)
+data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00")),DO=c(15,2,3),Temp=c(18,27,3))
+data$UseData=DO.Screening(DateTime.EST,DO,Temp,data)
+data
 }
 \keyword{Oxygen}
