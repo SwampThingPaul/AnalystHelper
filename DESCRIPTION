@@ -15,4 +15,8 @@ Depends:
     R (>= 3.0),
     lubridate,
     zoo,
-    RODBC
+    RODBC,  
+    dismo,
+    sp,
+    raster,
+    rgeos
