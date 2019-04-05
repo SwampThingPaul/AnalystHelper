@@ -2,11 +2,9 @@ Package: AnalystHelper
 Type: Package
 Title: Helper functions developed over the years to extract and format data
 Version: 0.0.1
-Author@R: c(
-    person("Paul", "Julian", role = c("aut", "cre"), 
-    email = "pjulian@ufl.edu", comment = c(ORCID = "0000-0002-7617-1354")),
-    person()
-    )
+Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"), 
+    email = "pjulian@ufl.edu", comment = c(ORCID = "0000-0002-7617-1354")))
+Author: Paul Julian [aut,cre],
 URL: https://github.com/swampthingpaul/AnalystHelper
 Description: retrieve and analyse data 
 License: MIT
