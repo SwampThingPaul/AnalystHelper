@@ -10,6 +10,6 @@
 #' WY(dates)
 
 WY=function(date,WY.type="FL"){
-  if(type=="FL"){ifelse(as.numeric(format(date,"%m"))>4,as.numeric(format(date,"%Y"))+1,as.numeric(format(date,"%Y")))}
-  else if(type=="Fed"){ifelse(as.numeric(format(date,"%m"))>9,as.numeric(format(date,"%Y"))+1,as.numeric(format(date,"%Y")))}else{NA}
+  if(WY.type=="FL"){ifelse(as.numeric(format(date,"%m"))>4,as.numeric(format(date,"%Y"))+1,as.numeric(format(date,"%Y")))}
+  else if(WY.type=="Fed"){ifelse(as.numeric(format(date,"%m"))>9,as.numeric(format(date,"%Y"))+1,as.numeric(format(date,"%Y")))}else{NA}
 }
