@@ -1,4 +1,4 @@
-# AnalystHelper
+# AnalystHelper <img src="https://github.com/SwampThingPaul/AnalystHelper/blob/f5cd324ca552cb0601998503fc5793a753e479d2/AnalystHelper_hex.png" align="right" height = "120"/>
 
 A package of functions that I have accumulated through the years and have kept as `CommonlyUsedFunctions.R` on my hard drive and would use `source()` to utilize these functions. 
 
