@@ -1,5 +1,7 @@
 # AnalystHelper <img src="https://github.com/SwampThingPaul/AnalystHelper/blob/f5cd324ca552cb0601998503fc5793a753e479d2/AnalystHelper_hex.png" align="right" height = "120"/>
 
+[![DOI](https://zenodo.org/badge/179672539.svg)](https://zenodo.org/badge/latestdoi/179672539)
+
 A package of functions that I have accumulated through the years and have kept as `CommonlyUsedFunctions.R` on my hard drive and would use `source()` to utilize these functions. 
 
 Using `library(roxygen2)` and R-studio "R-package Project" I constructed this package to be shareable amongst collaborators and generally be helpful in day-to-day analyses. Most of these functions are highly specific and constructed in my mind knowing what I knew at the time. Most functions presumably could be optimized. 
