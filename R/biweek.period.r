@@ -10,7 +10,7 @@
 #'dates=as.Date(c("2015-05-01","2015-08-20","2015-12-15"))
 #'biweek.period(dates)
 
-biweek.peroid=function(date,WY.type = "FL"){
+biweek.period=function(date,WY.type = "FL"){
   hydro.day(date)%/%14L+1L
 }
 
