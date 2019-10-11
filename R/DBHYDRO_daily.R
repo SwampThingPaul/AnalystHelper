@@ -14,13 +14,14 @@
 
 DBHYDRO_daily=function(SDATE,EDATE,DBK){
   #Returns daily data from SFWMD DBHydro
-  require(RCurl)
+  #require(RCurl)
   DBK.val=paste("",DBK,"",collapse="/",sep="")
   SDATE=paste(format(SDATE,"%Y"),toupper(format(SDATE,"%m")),format(SDATE,"%d"),sep="");#In YYYYMMDD format
   EDATE=paste(format(EDATE,"%Y"),toupper(format(EDATE,"%m")),format(EDATE,"%d"),sep="");#In YYYYMMDD format
   link=paste("http://my.sfwmd.gov/dbhydroplsql/web_io.report_process?v_period=uspec&v_start_date=",SDATE,"&v_end_date=",EDATE,"&v_report_type=format6&v_target_code=file_csv&v_run_mode=onLine&v_js_flag=Y&v_dbkey=",DBK.val,sep="")
-  tmp=RCurl::getURL(link)
-  REPORT=read.csv(tmp,skip=length(DBK)+2)
+  #tmp=RCurl::getURL(link)
+  #REPORT=read.csv(tmp,skip=length(DBK)+2)
+  REPORT=read.csv(link,skip=length(DBK)+2)
   REPORT$Date=with(REPORT,as.POSIXct(as.character(Daily.Date),format="%d-%b-%Y",tz="America/New_York"))
   REPORT=subset(REPORT,is.na(Date)==F)
   return(REPORT)
