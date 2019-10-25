@@ -19,5 +19,4 @@ Depends:
     dismo,
     sp,
     raster,
-    rgeos,
-    RCurl
+    rgeos
