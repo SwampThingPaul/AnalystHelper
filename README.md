@@ -2,9 +2,9 @@
 
 [![DOI](https://zenodo.org/badge/179672539.svg)](https://zenodo.org/badge/latestdoi/179672539)
 
-A package of functions that I have accumulated through the years and have kept as `CommonlyUsedFunctions.R` on my hard drive and would use `source()` to utilize these functions. 
+A package of functions that I have accumulated through the years and have kept as `CommonlyUsedFunctions.R` on my hard drive and would use `source()` to utilize these functions. Finally upgraded to building my `CommonlyUsedFunctions.R` into a functional package. 
 
-Using `library(roxygen2)` and R-studio "R-package Project" I constructed this package to be shareable amongst collaborators and generally be helpful in day-to-day analyses. Most of these functions are highly specific and constructed in my mind knowing what I knew at the time. Most functions presumably could be optimized. 
+Using `library(roxygen2)` and R-studio "R-package Project" I constructed this package to be shareable amongst collaborators and generally be helpful in day-to-day analyses. Most of these functions are highly specific and constructed in my mind knowing what I knew at the time. Most functions presumably could be optimized, make no sense to others or are redundant with other packages.  
 
 ***Please excuse any grammatical/text errors***
 
@@ -27,7 +27,7 @@ Objectives (*not all functions are identified here*):
 
     - For water quality, soil, fish and vegetation specific data use `DBHYDRO_WQ()`. This function requires a date range, Station ID and parameter(s) to be specified. See [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf) for more information.
     - Daily water water level, discharge and meterolgical specific data use `DBHYDRO_daily()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)).
-    - Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use `DBHYDRO_breakpoint()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)).
+    - Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use `DBHYDRO_breakpoint()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)). <ins>Currently this function is *UNDER FURTHER DEVELOPMENT*__* due to issues with internet connect timing out. The function is still available but buggy.</ins>
 
 2. **Data manipulation/handling**
 
