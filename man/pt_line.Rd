@@ -4,8 +4,19 @@
 \alias{pt_line}
 \title{Base plotting helper function.}
 \usage{
-pt_line(x, y, ln.lty, ln.col, ln.lwd, pch, bg, cex = 1, pt.lwd = 0.25,
-  pt.lty = 1, pt.col = "black")
+pt_line(
+  x,
+  y,
+  ln.lty,
+  ln.col,
+  ln.lwd,
+  pch,
+  bg,
+  cex = 1,
+  pt.lwd = 0.25,
+  pt.lty = 1,
+  pt.col = "black"
+)
 }
 \arguments{
 \item{x}{x-value}

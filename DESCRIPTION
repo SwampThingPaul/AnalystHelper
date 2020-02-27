@@ -8,9 +8,6 @@ Author: Paul Julian [aut,cre],
 URL: https://github.com/swampthingpaul/AnalystHelper
 Description: retrieve and analyse data 
 License: MIT
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.1.1.9000
 Depends:
     R (>= 3.0),
     lubridate,
@@ -20,3 +17,6 @@ Depends:
     sp,
     raster,
     rgeos
+Encoding: UTF-8
+LazyLoad: yes
+RoxygenNote: 7.0.2

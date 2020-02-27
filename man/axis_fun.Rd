@@ -4,8 +4,19 @@
 \alias{axis_fun}
 \title{Helper function for axis labels using base plotting}
 \usage{
-axis_fun(side, at, at2, labels, cex.axis = 1, line = -0.25, lwd = 1,
-  maj.tcl = -0.6, min.tcl = -0.3, las = 1, axisLine = 0)
+axis_fun(
+  side,
+  at,
+  at2,
+  labels,
+  cex.axis = 1,
+  line = -0.25,
+  lwd = 1,
+  maj.tcl = -0.6,
+  min.tcl = -0.3,
+  las = 1,
+  axisLine = 0
+)
 }
 \arguments{
 \item{side}{an integer specifying which side of the plot the axis is to be drawn on. The axis is placed as follows: 1=below, 2=left, 3=above and 4=right.}
