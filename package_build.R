@@ -11,3 +11,4 @@ devtools::document()
 devtools::check()
 
 
+devtools::install_github("SwampThingPaul/AnalystHelper",force=T)

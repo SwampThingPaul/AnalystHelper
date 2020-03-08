@@ -23,7 +23,7 @@ Data retrievial from South Florida Water Management District online database (DB
 # Daily Discharge Data
 sdate=as.Date("2001-05-01");
 edate=as.Date("2002-05-01");
-dat=DBHYDRO_daily(SDATE,EDATE,"FE771")
+dat=DBHYDRO_daily(sdate,edate,"FE771")
 }
 \keyword{discharge}
 \keyword{stage}
