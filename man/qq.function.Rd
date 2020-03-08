@@ -17,6 +17,8 @@ Calculation of theortical quantile (Quantile-Quantile Plot)
 }
 \examples{
 set.seed(123)
-test=lm(rnorm(100)~rnorm(100)+100)
+x.val=rnorm(100)
+y.val=x.val+100
+test=lm(y.val~x.val)
 qq.function(test$residuals)
 }

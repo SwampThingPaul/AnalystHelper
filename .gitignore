@@ -37,3 +37,4 @@ rsconnect/
 
 #build files (added by PJ)
 package_build.R
+/exclude/
