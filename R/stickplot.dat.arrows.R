@@ -16,7 +16,7 @@
 #' stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005,col="green",lty=1,lwd=1)
 
 stickplot.dat.arrows=function(DateTime,WSPD,WD,data,...){
-  #require(lubridate)
+  require(lubridate)
 
   if(!missing(data)){
     DateTime=data[,deparse(substitute(DateTime))]

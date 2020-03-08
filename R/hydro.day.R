@@ -11,7 +11,7 @@
 #'hydro.day(dates)
 
 hydro.day = function(Date, WY.type="FL"){
-  #require(lubridate)
+  require(lubridate)
   if(WY.type=="Fed"){start.month=10}
   if(WY.type=="FL"){start.month=5}
   Date=as.Date(Date)

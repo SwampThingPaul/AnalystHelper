@@ -8,10 +8,10 @@
 #' @return Returns a spatial thessian polygon
 
 thessian_create=function(data,clip,plot=T,full.extent=T){
-  #require(dismo)
-  #require(sp)
-  #require(raster)
-  #require(rgeos)
+  require(dismo)
+  require(sp)
+  require(raster)
+  require(rgeos)
   if(full.extent==T){bbox.da=c(bbox(clip)[1,1],bbox(clip)[1,2],bbox(clip)[2,1],bbox(clip)[2,2])}else{bbox.da=NULL}
   th=voronoi(data,ext=bbox.da)
   th.z=sp::over(th,data)
