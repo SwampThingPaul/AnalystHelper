@@ -5,3 +5,7 @@ library(roxygen2)
 devtools::document()
 
 #then ctrl+shift+b to build
+
+devtools::check()
+
+

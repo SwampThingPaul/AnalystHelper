@@ -12,7 +12,6 @@
 decimal.WY=function(date,WY.type="FL"){
   # calculates decimal water year (based on Florida WY)
   # similar to lubridate::decimal_dates()
-  require(lubridate)
 
   Y <- year(date)
   WY <- WY(date,WY.type=WY.type)

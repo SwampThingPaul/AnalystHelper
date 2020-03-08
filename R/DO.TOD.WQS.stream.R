@@ -9,7 +9,6 @@
 #' DO.TOD.WQS.stream(Date.Time)
 
 DO.TOD.WQS.stream=function(DateTime){
-  require(lubridate)
   Minutes=as.numeric((hour(DateTime)*60+minute(DateTime)))
   DO_TOD=round(0.00000000000019888*(Minutes^5)-0.00000000068941*(Minutes^4)+0.00000078373*(Minutes^3)-0.00031598*(Minutes^2)+0.03551*Minutes+33.43,1)
   return(DO_TOD)

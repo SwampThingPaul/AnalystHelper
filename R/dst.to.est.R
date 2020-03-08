@@ -9,7 +9,7 @@
 #' dst.to.est(datetime)
 
 dst.to.est=function(x,to.tzone="EST"){
-  require(lubridate)
+  #require(lubridate)
 
   #dst.check=dst(x)
   attributes(x)$tzone=to.tzone

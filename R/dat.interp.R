@@ -9,7 +9,6 @@
 #' dat.interp(data)
 
 dat.interp=function(x){
-  require(zoo)
   val=na.approx(x,na.rm=F)
   val=na.locf(val,na.rm=F,fromLast=F)
   val=na.locf(val,na.rm=F,fromLast=T)
