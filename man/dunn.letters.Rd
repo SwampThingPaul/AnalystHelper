@@ -29,11 +29,12 @@ Plotting helper function to add letters indicating statistically similar parings
 Use in combination with dunn.test::dunn.test() and rcompanion::cldList()
 }
 \examples{
-library(dunn.test)
-library(rcompanion)
+#library(dunn.test)
+#library(rcompanion)
 
 set.seed(123)
-data=data.frame(group=c(rep("alpha",5),rep("beta",5),rep("delta",5)),value=c(runif(5,max=2),runif(5,min=4,max=10),runif(5,min=12,max=30)))
+data=data.frame(group=c(rep("alpha",5),rep("beta",5),rep("delta",5)),
+value=c(runif(5,max=2),runif(5,min=4,max=10),runif(5,min=12,max=30)))
 
 DT=with(data,dunn.test(value,group))
 rslt=toupper(cldList(P.adjusted ~ comparison,data=DT,threshold = 0.05)$Letter)

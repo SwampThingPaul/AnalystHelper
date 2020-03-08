@@ -7,7 +7,7 @@ Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"),
 Author: Paul Julian [aut,cre],
 URL: https://github.com/swampthingpaul/AnalystHelper
 Description: retrieve and analyse data 
-License: MIT
+License: LICENSE
 Depends:
     R (>= 3.0),
     lubridate,

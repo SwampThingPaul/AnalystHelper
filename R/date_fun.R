@@ -8,7 +8,7 @@
 #' @return Helper function to format date (and date-time) fields
 #' @examples
 #' datetime=as.character(c("2015-05-01 08:00:00","2015-10-15 12:00:00","2015-10-15 5:00:00"))
-#' date.fun(datetime);# just date
-#' date.fun(datetime, form="%F %X"); #include date and time
+#' date_fun(datetime);# just date
+#' date_fun(datetime, form="%F %X"); #include date and time
 
-date.fun=function(x,tz="EST",form="%F")as.POSIXct(strptime(x,form),tz=tz)
+date_fun=function(x,tz="EST",form="%F")as.POSIXct(strptime(x,form),tz=tz)

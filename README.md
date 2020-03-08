@@ -1,4 +1,4 @@
-# AnalystHelper <img src="https://github.com/SwampThingPaul/AnalystHelper/blob/f5cd324ca552cb0601998503fc5793a753e479d2/AnalystHelper_hex.png" align="right" height = "120"/>
+# AnalystHelper <img src="./Hex/AnalystHelper_hex.png" align="right" height = "120"/>
 
 [![DOI](https://zenodo.org/badge/179672539.svg)](https://zenodo.org/badge/latestdoi/179672539)
 
