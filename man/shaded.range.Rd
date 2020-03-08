@@ -4,7 +4,8 @@
 \alias{shaded.range}
 \title{Base plotting helper function to draw a shaded polygon}
 \usage{
-shaded.range(x, y.L, y.U, bg, col = bg, lty = 3, col.adj = 0.25, lwd = 1)
+shaded.range(x, y.L, y.U, bg, col = bg, lty = 3, col.adj = 0.25,
+  lwd = 1)
 }
 \arguments{
 \item{x}{x-value}

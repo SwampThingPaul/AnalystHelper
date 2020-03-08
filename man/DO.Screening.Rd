@@ -4,15 +4,8 @@
 \alias{DO.Screening}
 \title{Function to screen dissolved oxygen data within the Everglades Ecosystem prior to evaluating compliance with established water quality standards.}
 \usage{
-DO.Screening(
-  DateTime,
-  DO,
-  Temp,
-  data,
-  hour.lims = c(6, 18),
-  max.DO = 20,
-  temp.lims = c(5, 20)
-)
+DO.Screening(DateTime, DO, Temp, data, hour.lims = c(6, 18),
+  max.DO = 20, temp.lims = c(5, 20))
 }
 \arguments{
 \item{DateTime}{as.POSIXct date and time}

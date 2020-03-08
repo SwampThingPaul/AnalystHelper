@@ -4,12 +4,8 @@
 \alias{DBHYDRO_breakpoint}
 \title{Data retrievial from South Florida Water Management District online database (DBHYDRO)}
 \usage{
-DBHYDRO_breakpoint(
-  SDATE,
-  EDATE,
-  DBK,
-  col.names = c("DATETIME", "Station", "DBKEY", "Data.Value", "Flag", "Comment")
-)
+DBHYDRO_breakpoint(SDATE, EDATE, DBK, col.names = c("DATETIME",
+  "Station", "DBKEY", "Data.Value", "Flag", "Comment"))
 }
 \arguments{
 \item{SDATE}{input start date as.Date (YYYY-MM-DD)}

@@ -4,15 +4,8 @@
 \alias{DBHYDRO_WQ}
 \title{Data retrievial from South Florida Water Management District online database (DBHYDRO)}
 \usage{
-DBHYDRO_WQ(
-  date_min,
-  date_max,
-  station_id,
-  test_number,
-  Exclude.FieldQC = "Y",
-  Exclude.Flagged = "Y",
-  sample_type = "SAMP"
-)
+DBHYDRO_WQ(date_min, date_max, station_id, test_number,
+  Exclude.FieldQC = "Y", Exclude.Flagged = "Y", sample_type = "SAMP")
 }
 \arguments{
 \item{date_min}{input start date as.Date (YYYY-MM-DD)}
