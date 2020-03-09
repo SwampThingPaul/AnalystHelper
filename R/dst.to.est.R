@@ -11,7 +11,7 @@
 dst.to.est=function(x,to.tzone="EST"){
   require(lubridate)
 
-  #dst.check=dst(x)
+  dst.check=dst(x)
   attributes(x)$tzone=to.tzone
   return(x)
 }
