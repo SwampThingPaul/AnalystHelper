@@ -22,12 +22,10 @@ draws line segments in the direct of wind with length corresponding to speed.
 windspeed and direction helper functions for base plotting
 }
 \examples{
-#Data from https://www.ndbc.noaa.gov
-wx.dat2005=read.table(...)
+wx.dat2005=read.table("https://www.ndbc.noaa.gov/view_text_file.php?filename=lonf1h2005.txt.gz&dir=data/historical/stdmet/",sep="",header=T,na.strings=c("99","999","9999.0"))
 
-plot(WSPD~DateTime.EST,wx.dat2005,
-type="n",ylab="Wind Speed (m/s)",ylim=c(-20,30))
-stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005,col="green",lty=1,lwd=1)
+plot(WSPD~DateTime.EST,wx.dat2005.tmp,type="n",ylab="Wind Speed (m/s)",ylim=c(-20,30))
+stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005.tmp,col="green",lty=1,lwd=1)
 }
 \keyword{base-plot}
 \keyword{wind}

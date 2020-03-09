@@ -9,15 +9,15 @@ ecdf_fun(x, CI = TRUE, CI.interval = 0.95)
 \arguments{
 \item{x}{numeric vector of the observations for ecdf; for the methods, an object inheriting from class "ecdf".}
 
-\item{CI}{If \code{TRUE} CDF confidence intervals will be calculated; default is set to \code{TRUE}.}
+\item{CI}{If TRUE CDF confidence intervals will be calculated; default is set to TRUE.}
 
-\item{CI.interval}{Confidence interval; default is set to 0.95}
+\item{CI.interval}{Confidence interval; default is set to 95%}
 }
 \value{
-Compute an empirical cumulative distribution function, returns a \code{data.frame} object proportion, value and confidence interval (if \code{CI==T}). Code based on base eCDF function.
+Compute an empirical cumulative distribution function, returns a data.frame() object proportion, value and confidence interval (if CI==T). Code based on base eCDF function.
 }
 \description{
-This function is simialr to the base \code{ecdf()} with some customizations to serve my needs.
+Determines Water Year from a date field
 }
 \examples{
 set.seed(1)

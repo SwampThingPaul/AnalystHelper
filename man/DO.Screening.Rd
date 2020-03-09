@@ -4,8 +4,15 @@
 \alias{DO.Screening}
 \title{Function to screen dissolved oxygen data within the Everglades Ecosystem prior to evaluating compliance with established water quality standards.}
 \usage{
-DO.Screening(DateTime, DO, Temp, data, hour.lims = c(6, 18),
-  max.DO = 20, temp.lims = c(5, 20))
+DO.Screening(
+  DateTime,
+  DO,
+  Temp,
+  data,
+  hour.lims = c(6, 18),
+  max.DO = 20,
+  temp.lims = c(5, 20)
+)
 }
 \arguments{
 \item{DateTime}{as.POSIXct date and time}
@@ -31,9 +38,7 @@ DO.Screening() assumes the data has a "DateTime.EST" field (date and time stamp)
 Function to screen dissolved oxygen data within the Everglades Ecosystem prior to evaluating compliance with established water quality standards.
 }
 \examples{
-data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00")),
-DO=c(15,2,3),Temp=c(18,27,3))
-
+data=data.frame(DateTime.EST=as.POSIXct(c("2015-05-01 08:00","2015-10-15 12:00","2015-10-15 5:00")),DO=c(15,2,3),Temp=c(18,27,3))
 data$UseData=DO.Screening(DateTime.EST,DO,Temp,data)
 data
 }

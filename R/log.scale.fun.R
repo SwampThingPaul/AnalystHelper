@@ -14,16 +14,11 @@
 #' xlim.val=c(1,100)
 #' ylim.val=c(1,5000)
 #' plot(y.val~x.val,ylim=ylim.val,xlim=xlim.val,log="xy",yaxt="n",xaxt="n")
-#' xmaj=log_scale_fun(xlim.val,"major")
-#' xmin=log_scale_fun(xlim.val,"minor")
-#' ymaj=log_scale_fun(ylim.val,"major")
-#' ymin=log_scale_fun(ylim.val,"minor")
-#'
-#' axis_fun(1,xmaj,xmin,xmaj)
-#' axis_fun(2,yamj,ymin,ymaj)
+#' axis_fun(1,log.scale.fun(xlim.val,"major"),log.scale.fun(xlim.val,"minor"),log.scale.fun(xlim.val,"major"))
+#' axis_fun(2,log.scale.fun(ylim.val,"major"),log.scale.fun(ylim.val,"minor"),log.scale.fun(ylim.val,"major"))
 
 
-log_scale_fun=function(val,type){
+log.scale.fun=function(val,type){
   min.val=floor(log10(min(val)))
   max.val=ceiling(log10(max(val)))
   maj.tck=10^seq(min.val,max.val,1)

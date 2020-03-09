@@ -5,9 +5,7 @@
 #' @return Part of the qqnorm generic function
 #' @examples
 #' set.seed(123)
-#' x.val=rnorm(100)
-#' y.val=x.val+100
-#' test=lm(y.val~x.val)
+#' test=lm(rnorm(100)~rnorm(100)+100)
 #' qq.function(test$residuals)
 
 qq.function=function(y){

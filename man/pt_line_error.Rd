@@ -4,9 +4,22 @@
 \alias{pt_line_error}
 \title{Point with error bars}
 \usage{
-pt_line_error(x, y, SE, ln.lty, ln.col, ln.lwd, pch, bg, cex = 1,
-  pt.lwd = 1, pt.lty = 1, er.lwd = 1, pt.col = "black",
-  length = 0.07)
+pt_line_error(
+  x,
+  y,
+  SE,
+  ln.lty,
+  ln.col,
+  ln.lwd,
+  pch,
+  bg,
+  cex = 1,
+  pt.lwd = 1,
+  pt.lty = 1,
+  er.lwd = 1,
+  pt.col = "black",
+  length = 0.07
+)
 }
 \arguments{
 \item{x}{x-value}

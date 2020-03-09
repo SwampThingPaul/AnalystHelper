@@ -7,14 +7,7 @@ Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"),
 Author: Paul Julian [aut,cre],
 URL: https://github.com/swampthingpaul/AnalystHelper
 Description: retrieve and analyse data 
-<<<<<<< HEAD
-License: LICENSE
-=======
 License: MIT
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.1.1.9000
->>>>>>> parent of a8b753e... edits/updates
 Depends:
     R (>= 3.0),
     lubridate,
@@ -24,3 +17,6 @@ Depends:
     sp,
     raster,
     rgeos
+Encoding: UTF-8
+LazyLoad: yes
+RoxygenNote: 7.0.2

@@ -4,12 +4,11 @@
 #' @param conc.mgL Nutrient (or other parameter) concentration data in milligrams per liter
 #' @keywords nutrient load
 #' @note see dat.interp()
-#' @export
 #' @return Calculates load in kilograms from discharge (cfs) and concentration (mg/L)
 #' @examples
-#' Load_Calc_kg(350,0.0012);#350 cfs and 0.0012 mg/L
+#' Load.Calc.kg(350,0.0012);#350 cfs and 0.0012 mg/L
 
-Load_Calc_kg=function(flow.cfs,conc.mgL){
+Load.Calc.kg=function(flow.cfs,conc.mgL){
   q.cmd=flow.cfs*2446.57555
   conc.mgm3=conc.mgL*1000
   load.kg=(q.cmd*conc.mgm3)*1e-6

@@ -35,6 +35,6 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 
-#build files (added by PJ)
-package_build.R
+
+#
 /exclude/

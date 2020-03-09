@@ -10,8 +10,7 @@
 #' # Daily Discharge Data
 #' sdate=as.Date("2001-05-01");
 #' edate=as.Date("2001-06-01");
-#' dat=DBHYDRO_breakpoint(sdate,edate,"AI516")
-
+#' dat=DBHYDRO_breakpoint(SDATE,EDATE,"AI516")
 DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,col.names=c("DATETIME","Station","DBKEY","Data.Value","Flag","Comment")){
   #require(RCurl)
   DBK.val=paste("",DBK,"",collapse="/",sep="")
