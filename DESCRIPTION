@@ -1,22 +1,15 @@
 Package: AnalystHelper
 Type: Package
 Title: Helper functions developed over the years to extract and format data
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"), 
-    email = "pjulian@ufl.edu", comment = c(ORCID = "0000-0002-7617-1354")))
+    email = "pauljulianphd@gmail.com", comment = c(ORCID = "0000-0002-7617-1354")))
 Author: Paul Julian [aut,cre],
 URL: https://github.com/swampthingpaul/AnalystHelper
 Description: retrieve and analyse data 
 License: MIT
-Depends:
-    R (>= 3.0),
-    lubridate,
-    zoo,
-    RODBC,  
-    dismo,
-    sp,
-    raster,
-    rgeos
+Depends: R (>= 3.0)
+Suggests: zoo,RODBC,dismo,sp,raster,rgeos
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 7.0.2

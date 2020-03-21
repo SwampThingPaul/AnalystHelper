@@ -12,7 +12,6 @@
 #' @param las direction of text
 #' @param axisLine the number of lines into the margin at which the axis line will be drawn
 #' @keywords axis ticks
-#' @export
 #' @return a function that provides major and minor ticks with labels
 #' @note see axis() function
 #' @examples

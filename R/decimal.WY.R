@@ -12,18 +12,17 @@
 decimal.WY=function(date,WY.type="FL"){
   # calculates decimal water year (based on Florida WY)
   # similar to lubridate::decimal_dates()
-  require(lubridate)
 
-  Y <- year(date)
+  Y <- as.numeric(format(date,"%Y"))
   WY <- WY(date,WY.type=WY.type)
 
   if(WY.type=="FL"){
-    start <- make_datetime(WY-1, 5L, 1L, tz = tz(date))
-    end <- make_datetime(WY, 5L, 1L, tz = tz(date))
+    start <- as.POSIXct(paste(WY-1, 5, 1,sep="-"), tz = tz(date))
+    end <- as.POSIXct(paste(WY, 5, 1,sep="-"), tz = tz(date))
   }
   else if(WY.type=="Fed"){
-    start <- make_datetime(WY-1, 10L, 1L, tz = tz(date))
-    end <- make_datetime(WY, 10L, 1L, tz = tz(date))
+    start <- as.POSIXct(paste(WY-1, 10, 1,sep="-"), tz = tz(date))
+    end <- as.POSIXct(paste(WY, 10, 1,sep="-"), tz = tz(date))
   }else{NA}
 
   sofar <- as.numeric(difftime(date, start, units = "secs"))

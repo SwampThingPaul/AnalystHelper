@@ -12,9 +12,8 @@
 
 
 read.access=function(channel,table){
-  require(RODBC)
-  chan=odbcConnectAccess2007(channel)
-  dat=sqlFetch(chan,table)
+  chan=RODBC::odbcConnectAccess2007(channel)
+  dat=RODBC::sqlFetch(chan,table)
   close(chan)
   return(dat)
 }

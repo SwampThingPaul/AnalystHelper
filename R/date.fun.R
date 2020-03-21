@@ -4,7 +4,6 @@
 #' @param tz timezone (default set to Eastern Standard Time)
 #' @param form format (default set to YYYY-mm-dd)
 #' @keywords date
-#' @export
 #' @return Helper function to format date (and date-time) fields
 #' @examples
 #' datetime=as.character(c("2015-05-01 08:00:00","2015-10-15 12:00:00","2015-10-15 5:00:00"))

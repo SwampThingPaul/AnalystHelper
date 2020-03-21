@@ -4,7 +4,7 @@
 \alias{dst.to.est}
 \title{converts Eastern Daylight Saving time (EDT) to Eastern Standard Time (EST)}
 \usage{
-\method{dst}{to.est}(x, to.tzone = "EST")
+dst.to.est(x, to.tzone = "EST")
 }
 \arguments{
 \item{x}{Date (as.POSIXct)}
