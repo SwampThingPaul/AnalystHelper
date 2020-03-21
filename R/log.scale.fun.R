@@ -3,7 +3,6 @@
 #' @param val range of values
 #' @param type major or minor
 #' @keywords axis ticks log-scale
-#' @export
 #' @return a function that provides major and minor ticks with labels on a log scale
 #' @note see axis() and axis_fun() function
 #' @examples

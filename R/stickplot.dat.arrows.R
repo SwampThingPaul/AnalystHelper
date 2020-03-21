@@ -14,7 +14,6 @@
 #' stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005.tmp,col="green",lty=1,lwd=1)
 
 stickplot.dat.arrows=function(DateTime,WSPD,WD,data,...){
-  require(lubridate)
 
   if(!missing(data)){
     DateTime=data[,deparse(substitute(DateTime))]
@@ -23,7 +22,7 @@ stickplot.dat.arrows=function(DateTime,WSPD,WD,data,...){
   }
 
   y=rep(0,length(DateTime))
-  xend=DateTime + lubridate::dhours(WSPD * 1 * -cos((90-WD) / 360 * 2 * pi))
+  xend=DateTime + (WSPD * 1 * -cos((90-WD) / 360 * 2 * pi))*3600
   yend = WSPD * 1 * -sin((90-WD) / 360 * 2 * pi)
   tmp=data.frame(DateTime=DateTime,y=y,xend=xend,yend=yend)
   arrows(DateTime,y,xend,yend,length=0,...)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ecdf_fun.R
 \name{ecdf_fun}
 \alias{ecdf_fun}
-\title{Determines Water Year from a date field}
+\title{eCDF with confidence intervals}
 \usage{
 ecdf_fun(x, CI = TRUE, CI.interval = 0.95)
 }
@@ -11,17 +11,17 @@ ecdf_fun(x, CI = TRUE, CI.interval = 0.95)
 
 \item{CI}{If TRUE CDF confidence intervals will be calculated; default is set to TRUE.}
 
-\item{CI.interval}{Confidence interval; default is set to 95%}
+\item{CI.interval}{Confidence interval; default is set to 95\%}
 }
 \value{
-Compute an empirical cumulative distribution function, returns a data.frame() object proportion, value and confidence interval (if CI==T). Code based on base eCDF function.
+Compute an empirical cumulative distribution function, returns a data frame with value and proporiton. Code based on base eCDF function.
 }
 \description{
-Determines Water Year from a date field
+eCDF with confidence intervals
 }
 \examples{
-set.seed(1)
-ecdf_fun(rnorm(100))
-
+set.seed(12)
+test<-rnorm(100)
+ecdf_fun(test)
 }
 \keyword{cdf}

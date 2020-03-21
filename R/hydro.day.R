@@ -11,12 +11,11 @@
 #'hydro.day(dates)
 
 hydro.day = function(Date, WY.type="FL"){
-  require(lubridate)
   if(WY.type=="Fed"){start.month=10}
   if(WY.type=="FL"){start.month=5}
   Date=as.Date(Date)
-  start.yr = year(Date) - (month(Date) < start.month)
-  start.date = make_date(start.yr, start.month, 1L)
+  start.yr = as.numeric(format(Date,"%Y")) - (as.numeric(format(Date,"%m")) < start.month)
+  start.date =as.POSIXct(paste(start.yr,start.month,1),tz=tz(Date))
   DOWY=as.integer(Date - start.date + 1L)
   return(DOWY)
 }
