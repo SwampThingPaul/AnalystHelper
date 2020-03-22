@@ -15,14 +15,15 @@ decimal.WY=function(date,WY.type="FL"){
 
   Y <- as.numeric(format(date,"%Y"))
   WY <- WY(date,WY.type=WY.type)
+  tz.val<-if(is.null(attr(date,"tzone"))){Sys.timezone()}else{attr(date,"tzone")}
 
   if(WY.type=="FL"){
-    start <- as.POSIXct(paste(WY-1, 5, 1,sep="-"), tz = tz(date))
-    end <- as.POSIXct(paste(WY, 5, 1,sep="-"), tz = tz(date))
+    start <- as.POSIXct(paste(WY-1, 5, 1,sep="-"), tz = tz.val)
+    end <- as.POSIXct(paste(WY, 5, 1,sep="-"), tz =tz.val)
   }
   else if(WY.type=="Fed"){
-    start <- as.POSIXct(paste(WY-1, 10, 1,sep="-"), tz = tz(date))
-    end <- as.POSIXct(paste(WY, 10, 1,sep="-"), tz = tz(date))
+    start <- as.POSIXct(paste(WY-1, 10, 1,sep="-"), tz = tz.val)
+    end <- as.POSIXct(paste(WY, 10, 1,sep="-"), tz = tz.val)
   }else{NA}
 
   sofar <- as.numeric(difftime(date, start, units = "secs"))
