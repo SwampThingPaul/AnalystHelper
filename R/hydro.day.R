@@ -14,10 +14,12 @@ hydro.day = function(Date, WY.type="FL"){
   if(WY.type=="Fed"){start.month=10}
   if(WY.type=="FL"){start.month=5}
   Date=as.Date(Date)
+  tz.val<-if(is.null(attr(Date,"tzone"))){Sys.timezone()}else{attr(Date,"tzone")}
   start.yr = as.numeric(format(Date,"%Y")) - (as.numeric(format(Date,"%m")) < start.month)
-  start.date =as.POSIXct(paste(start.yr,start.month,1),tz=tz(Date))
-  DOWY=as.integer(Date - start.date + 1L)
+  start.date =as.Date(paste(start.yr,start.month,1,sep="-"),tz=tz.val)
+  DOWY=as.integer(Date - as.Date(start.date) + 1L)
   return(DOWY)
 }
+
 
 
