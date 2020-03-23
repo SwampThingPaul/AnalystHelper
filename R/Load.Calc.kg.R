@@ -4,6 +4,7 @@
 #' @param conc.mgL Nutrient (or other parameter) concentration data in milligrams per liter
 #' @keywords nutrient load
 #' @note see dat.interp()
+#' @export
 #' @return Calculates load in kilograms from discharge (cfs) and concentration (mg/L)
 #' @examples
 #' Load.Calc.kg(350,0.0012);#350 cfs and 0.0012 mg/L

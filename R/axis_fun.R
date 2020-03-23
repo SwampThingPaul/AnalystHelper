@@ -14,6 +14,7 @@
 #' @keywords axis ticks
 #' @return a function that provides major and minor ticks with labels
 #' @note see axis() function
+#' @export
 #' @examples
 #' plot(runif(25),ylim=c(0,1),xlim=c(0,1),xaxt="n",yaxt="n")
 #' axis_fun(1,seq(0,1,0.5),seq(0,1,0.25),seq(0,1,0.5))

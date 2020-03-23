@@ -48,6 +48,7 @@ DBHYDRO_WQ=function(date_min,date_max,station_id,test_number,Exclude.FieldQC = "
   return(REPORT)
 }
 
+#' @export
 SFWMD.DBHYDRO.Data.WQ=function(date_min,date_max,station_id,test_number,Exclude.FieldQC = "Y",Exclude.Flagged = "Y",sample_type="SAMP"){
   dat=DBHYDRO_WQ(date_min,date_max,station_id,test_number,Exclude.FieldQC,Exclude.Flagged,sample_type)
   warning("This function is being phased out. Consider using DBHYDRO_WQ in the future.")

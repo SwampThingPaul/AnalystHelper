@@ -23,6 +23,8 @@ DBHYDRO_daily=function(SDATE,EDATE,DBK){
   REPORT=subset(REPORT,is.na(Date)==F)
   return(REPORT)
 }
+
+#' @export
 SFWMD.DBHYDRO.Data.daily=function(SDATE,EDATE,DBK){
   dat=DBHYDRO_daily(SDATE,EDATE,DBK)
   warning("This function is being phased out. Consider using DBHYDRO_daily in the future.")

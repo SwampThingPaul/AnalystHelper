@@ -4,6 +4,7 @@
 #' @param CI If TRUE CDF confidence intervals will be calculated; default is set to TRUE.
 #' @param CI.interval Confidence interval; default is set to 95\%
 #' @keywords cdf
+#' @export
 #' @return Compute an empirical cumulative distribution function, returns a data frame with value and proporiton. Code based on base eCDF function.
 #' @examples
 #' set.seed(12)

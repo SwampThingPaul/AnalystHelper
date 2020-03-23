@@ -22,6 +22,8 @@ DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,col.names=c("DATETIME","Station","DB
   REPORT=subset(REPORT,is.na(DATETIME)==F)
   return(REPORT)
 }
+
+#' @export
 SFWMD.DBHYDRO.Data.breakpoint=function(SDATE,EDATE,DBK,col.names=c("DATETIME","Station","DBKEY","Data.Value","Flag","Comment")){
   dat=DBHYDRO_breakpoint(SDATE,EDATE,DBK,col.names)
   warning("This function is being phased out. Consider using DBHYDRO_breakpoint in the future.")
