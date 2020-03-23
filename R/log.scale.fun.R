@@ -5,6 +5,7 @@
 #' @keywords axis ticks log-scale
 #' @return a function that provides major and minor ticks with labels on a log scale
 #' @note see axis() and axis_fun() function
+#' @export log.scale.fun
 #' @examples
 #' set.seed(36)
 #' x.val=exp(rlnorm(100))
