@@ -4,12 +4,12 @@
 \alias{N}
 \title{Returns sample size}
 \usage{
-N(x, NA.val = "NA")
+N(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{numeric value}
 
-\item{NA.val}{the value to exclude, default is 'NA'}
+\item{na.rm}{a logical value indicating whether NA values should be stripped before the computation proceeds.}
 }
 \value{
 return the number of real values.
