@@ -20,5 +20,6 @@ Returns sample size
 \examples{
 example=c(rnorm(12),NA,NA,NA)
 N(example);# versus length(example)
+N.obs(example)
 }
 \keyword{count}

@@ -11,7 +11,7 @@ ecdf_fun(x, CI = TRUE, CI.interval = 0.95)
 
 \item{CI}{If TRUE CDF confidence intervals will be calculated; default is set to TRUE.}
 
-\item{CI.interval}{Confidence interval; default is set to 95\%}
+\item{CI.interval}{Confidence interval; default is set to 95\\%}
 }
 \value{
 Compute an empirical cumulative distribution function, returns a data frame with value and proporiton. Code based on base eCDF function.

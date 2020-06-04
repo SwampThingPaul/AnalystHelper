@@ -17,6 +17,6 @@ date_fun=function(x,tz="EST",form="%F"){
 
 #' @export date.fun
 date.fun=function(x,tz="EST",form="%F"){
-  warning("This function has been replaced with date_fun")
+  #warning("This function has been replaced with date_fun")
   as.POSIXct(strptime(x,form),tz=tz)
 }
