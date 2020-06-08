@@ -2,10 +2,10 @@
 #'
 #' @param x numeric vector of the observations for ecdf; for the methods, an object inheriting from class "ecdf".
 #' @param CI If TRUE CDF confidence intervals will be calculated; default is set to TRUE.
-#' @param CI.interval Confidence interval; default is set to 95\%
+#' @param CI.interval Confidence interval; default is set to 0.95
 #' @keywords cdf
-#' @export
 #' @return Compute an empirical cumulative distribution function, returns a data frame with value and proporiton. Code based on base eCDF function.
+#' @export
 #' @examples
 #' set.seed(12)
 #' test<-rnorm(100)
