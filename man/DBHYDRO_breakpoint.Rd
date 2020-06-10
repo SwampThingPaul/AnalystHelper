@@ -8,7 +8,8 @@ DBHYDRO_breakpoint(
   SDATE,
   EDATE,
   DBK,
-  col.names = c("DATETIME", "Station", "DBKEY", "Data.Value", "Flag", "Comment")
+  col.names = c("DATETIME", "Station", "DBKEY", "Data.Value", "Flag", "Comment"),
+  timeout = 200
 )
 }
 \arguments{
