@@ -19,7 +19,7 @@ shaded.range(x, y.L, y.U, bg, col = bg, lty = 3, col.adj = 0.25, lwd = 1)
 
 \item{lty}{line type}
 
-\item{col.adj}{factor modifying the opacity alpha; typically in \link{0,1} see alpha.f in adjustcolor()}
+\item{col.adj}{factor modifying the opacity alpha. See alpha.f in adjustcolor()}
 
 \item{lwd}{lines width around polygon}
 }

@@ -6,7 +6,7 @@
 #' @param bg background shading
 #' @param col line color
 #' @param lty line type
-#' @param col.adj factor modifying the opacity alpha; typically in [0,1] see alpha.f in adjustcolor()
+#' @param col.adj factor modifying the opacity alpha. See alpha.f in adjustcolor()
 #' @param lwd lines width around polygon
 #' @keywords shaded
 #' @export
