@@ -15,7 +15,8 @@ axis_fun(
   maj.tcl = -0.6,
   min.tcl = -0.3,
   las = 1,
-  axisLine = 0
+  axisLine = 0,
+  ...
 )
 }
 \arguments{

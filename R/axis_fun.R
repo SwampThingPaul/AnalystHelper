@@ -20,8 +20,8 @@
 #' axis_fun(1,seq(0,1,0.5),seq(0,1,0.25),seq(0,1,0.5))
 #' axis_fun(2,seq(0,1,0.5),seq(0,1,0.25),seq(0,1,0.5))
 
-axis_fun=function(side,at,at2,labels,cex.axis=1,line=-0.25,lwd=1,maj.tcl=-0.6,min.tcl=-0.3,las=1,axisLine=0){
-  axis(side,line=line,at=at,labels=labels,las=las,tcl=maj.tcl,lty=0,cex.axis=cex.axis);
+axis_fun=function(side,at,at2,labels,cex.axis=1,line=-0.25,lwd=1,maj.tcl=-0.6,min.tcl=-0.3,las=1,axisLine=0,...){
+  axis(side,line=line,at=at,labels=labels,las=las,tcl=maj.tcl,lty=0,cex.axis=cex.axis,...);
   axis(side,at=at,labels=F,las=las,tcl=maj.tcl,lwd=lwd,line=axisLine);
   axis(side,at=at2,labels=F,tcl=min.tcl,lwd=lwd,line=axisLine)
 }
