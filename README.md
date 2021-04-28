@@ -51,5 +51,9 @@ Objectives (*not all functions are identified here*):
 5. **Date and time functions**
 
     Working with date fields correctly in R can be onerous, therefore a few functions were developed to handle these type of issues. `date.fun()` and `dst.to.est()` are the two major date handling functions. Other functions revolving around date fields include `WY()`, `hydro.day()`, `decimal.WY()` and `FL.Hydroseason()` to calcualte water year, day of water year and wet/dry season respectively. 
+   
+6. **read.access()**
+
+    `read.access()` streamlines the process of reading MS Access tables into `R` by using the `RODBC` package. For some systems, Microsoft Access Database Engine 2010 may need to be install. [Here](https://www.microsoft.com/en-us/download/details.aspx?id=13255) is the link for Redistributable installer. 
     
 ***
