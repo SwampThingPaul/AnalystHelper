@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/swampthingpaul/AnalystHelper/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,19 +117,19 @@
     <p>Base plotting helper function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pt_line</span>(
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='no'>ln.lty</span>,
-  <span class='no'>ln.col</span>,
-  <span class='no'>ln.lwd</span>,
-  <span class='no'>pch</span>,
-  <span class='no'>bg</span>,
-  <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>pt.lwd</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>pt.lty</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>pt.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>pt_line</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  <span class='va'>ln.lty</span>,
+  <span class='va'>ln.col</span>,
+  <span class='va'>ln.lwd</span>,
+  <span class='va'>pch</span>,
+  <span class='va'>bg</span>,
+  cex <span class='op'>=</span> <span class='fl'>1</span>,
+  pt.lwd <span class='op'>=</span> <span class='fl'>0.25</span>,
+  pt.lty <span class='op'>=</span> <span class='fl'>1</span>,
+  pt.col <span class='op'>=</span> <span class='st'>"black"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,10 +188,12 @@
     <p>see points() and lines() functions</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x.val</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>)
-<span class='no'>mean.val</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>7</span>)
-<span class='no'>se.val</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>,<span class='fl'>0.5</span>,<span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mean.val</span>~<span class='no'>x.val</span>,<span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>10</span>),<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"n"</span>)</div><div class='input'><span class='fu'>pt_line</span>(<span class='no'>x.val</span>,<span class='no'>mean.val</span>,<span class='fl'>2</span>,<span class='st'>"grey"</span>,<span class='fl'>1</span>,<span class='fl'>21</span>,<span class='st'>"dodgerblue1"</span>)</div><div class='img'><img src='pt_line-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>x.val</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>mean.val</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>7</span><span class='op'>)</span>
+<span class='va'>se.val</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>,<span class='fl'>0.5</span>,<span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mean.val</span><span class='op'>~</span><span class='va'>x.val</span>,ylim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span>,type<span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>pt_line</span><span class='op'>(</span><span class='va'>x.val</span>,<span class='va'>mean.val</span>,<span class='fl'>2</span>,<span class='st'>"grey"</span>,<span class='fl'>1</span>,<span class='fl'>21</span>,<span class='st'>"dodgerblue1"</span><span class='op'>)</span>
+</div><div class='img'><img src='pt_line-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -207,7 +209,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

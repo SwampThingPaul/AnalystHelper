@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/swampthingpaul/AnalystHelper/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
     <p>Data retrievial from South Florida Water Management District online database (DBHYDRO)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.access</span>(<span class='no'>channel</span>, <span class='no'>table</span>)</pre>
+    <pre class="usage"><span class='fu'>read.access</span><span class='op'>(</span><span class='va'>channel</span>, <span class='va'>table</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,7 +138,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>dat</span><span class='kw'>=</span><span class='fu'>read.access</span>(<span class='st'>"/database.accdb"</span>,<span class='st'>"WaterQuality"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in RODBC::sqlFetch(chan, table): first argument is not an open RODBC channel</span></div><div class='input'>
+<span class='va'>dat</span><span class='op'>=</span><span class='fu'>read.access</span><span class='op'>(</span><span class='st'>"/database.accdb"</span>,<span class='st'>"WaterQuality"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in RODBC::sqlFetch(chan, table): first argument is not an open RODBC channel</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -155,7 +156,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

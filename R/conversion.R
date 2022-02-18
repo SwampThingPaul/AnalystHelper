@@ -39,7 +39,9 @@ ft.to.m=function(x) x*0.3048
 #' @export
 m.to.ft=function(x) x*3.28084
 #' @export
-degF.to.C=function(x) x-32*(5/9)
+degF.to.C=function(x) (x-32)*(5/9)
+#' @export
+degC.to.F=function(x) (x*9/5)+32
 #' @export
 in.to.cm=function(x) x*2.54
 #' @export

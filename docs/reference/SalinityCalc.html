@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/swampthingpaul/AnalystHelper/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
     <p>Calculates salinity from Specific Conductance and Temperature data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>SalinityCalc</span>(<span class='no'>SpCond</span>, <span class='no'>Temp</span>, <span class='kw'>Ref.Cond</span> <span class='kw'>=</span> <span class='fl'>42914</span>)</pre>
+    <pre class="usage"><span class='fu'>SalinityCalc</span><span class='op'>(</span><span class='va'>SpCond</span>, <span class='va'>Temp</span>, Ref.Cond <span class='op'>=</span> <span class='fl'>42914</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,7 +141,8 @@
     <p>Calculation based on UNESCO "Algorithms for computation of fundamental propoerties of seawater".</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>SalinityCalc</span>(<span class='fl'>50512</span>,<span class='fl'>25.5</span>)</div><div class='output co'>#&gt; [1] 33.10228</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>SalinityCalc</span><span class='op'>(</span><span class='fl'>50512</span>,<span class='fl'>25.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 33.10228</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -157,7 +158,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
