@@ -9,9 +9,12 @@ DBHYDRO_WQ(
   date_max,
   station_id,
   test_number,
+  matrix = "SW",
+  cust_str = NULL,
   Exclude.FieldQC = "Y",
   Exclude.Flagged = "Y",
-  sample_type = "SAMP"
+  sample_type = "SAMP",
+  target_code = "file_csv"
 )
 }
 \arguments{
@@ -23,11 +26,17 @@ DBHYDRO_WQ(
 
 \item{test_number}{corresponds to SFWMD data management system}
 
+\item{matrix}{default is "SW" for surface water other variables include "BAL","BAN","DI","BFE","BFI","GW","PERI","BPL","PW","RA","SE","SO","UNK"}
+
+\item{cust_str}{custom HTML string to add to query, example "+and+station_id+in+('L31NNGW4')" to look for a specific location (if station_id is NULL)}
+
 \item{Exclude.FieldQC}{true/false field}
 
 \item{Exclude.Flagged}{true/false field}
 
 \item{sample_type}{default 'SAMP'}
+
+\item{target_code}{default file_csv but can have "screen" and default browser will launch}
 }
 \value{
 This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
@@ -40,7 +49,7 @@ Data retrievial from South Florida Water Management District online database (DB
 sdate=as.Date("2001-05-01");
 edate=as.Date("2002-05-01");
 parameter=25;#Test Number for Phosphate, Total as P (mg/L)
-dat=DBHYDRO_WQ(sdate,edate,"S12A",parameter)
+dat=DBHYDRO_WQ(sdate,edate,"S12A",parameter,target_code="file_csv")
 }
 \keyword{"water}
 \keyword{quality"}

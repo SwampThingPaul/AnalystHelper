@@ -8,10 +8,12 @@
 #' @export
 #' @return draws line segments in the direct of wind with length corresponding to speed.
 #' @examples
+#' \dontrun{
 #' wx.dat2005=read.table("https://www.ndbc.noaa.gov/view_text_file.php?filename=lonf1h2005.txt.gz&dir=data/historical/stdmet/",sep="",header=T,na.strings=c("99","999","9999.0"))
 #'
 #' plot(WSPD~DateTime.EST,wx.dat2005.tmp,type="n",ylab="Wind Speed (m/s)",ylim=c(-20,30))
 #' stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005.tmp,col="green",lty=1,lwd=1)
+#' }
 
 stickplot.dat.arrows=function(DateTime,WSPD,WD,data,...){
 

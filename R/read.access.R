@@ -6,9 +6,9 @@
 #' @export
 #' @return This function allows for quick access of data within an 2007/2010 Microsoft Access database (.accdb).
 #' @examples
-#'
+#'\dontrun{
 #' dat=read.access("/database.accdb","WaterQuality")
-#'
+#'}
 
 
 read.access=function(channel,table){

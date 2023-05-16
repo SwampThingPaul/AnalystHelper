@@ -26,10 +26,12 @@ This function returns breakpoint (i.e. 15-minute) hydrometerological (discharge,
 Data retrievial from South Florida Water Management District online database (DBHYDRO)
 }
 \examples{
+\dontrun{
 # Daily Discharge Data
 sdate=as.Date("2001-05-01");
 edate=as.Date("2001-06-01");
 dat=DBHYDRO_breakpoint(SDATE,EDATE,"AI516")
+}
 }
 \keyword{discharge}
 \keyword{stage}

@@ -29,6 +29,7 @@ Plotting helper function to add letters indicating statistically similar parings
 Use in combination with dunn.test::dunn.test() and rcompanion::cldList()
 }
 \examples{
+\dontrun{
 library(dunn.test)
 library(rcompanion)
 
@@ -39,6 +40,7 @@ DT=with(data,dunn.test(value,group))
 rslt=toupper(cldList(P.adjusted ~ comparison,data=DT,threshold = 0.05)$Letter)
 boxplot(value~group,data,ylim=c(0,40))
 dunn.letters(3,1:3,c(2,10,30),rslt,"red",1)
+}
 }
 \keyword{Dunn}
 \keyword{boxplot}

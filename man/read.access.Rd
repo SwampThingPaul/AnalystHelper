@@ -18,8 +18,8 @@ This function allows for quick access of data within an 2007/2010 Microsoft Acce
 Data retrievial from South Florida Water Management District online database (DBHYDRO)
 }
 \examples{
-
+\dontrun{
 dat=read.access("/database.accdb","WaterQuality")
-
+}
 }
 \keyword{access}

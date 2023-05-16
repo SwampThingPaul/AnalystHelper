@@ -6,11 +6,14 @@
 #' @keywords discharge weather stage
 #' @export
 #' @return This function returns breakpoint (i.e. 15-minute) hydrometerological (discharge, stage(WL) and meterological parameters) dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management.
+#' @importFrom utils read.csv
 #' @examples
+#' \dontrun{
 #' # Daily Discharge Data
 #' sdate=as.Date("2001-05-01");
 #' edate=as.Date("2001-06-01");
 #' dat=DBHYDRO_breakpoint(SDATE,EDATE,"AI516")
+#' }
 DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,col.names=c("DATETIME","Station","DBKEY","Data.Value","Flag","Comment"),timeout=200){
   DBK.val=paste("",DBK,"",collapse="/",sep="")
   SDATE=paste(format(SDATE,"%Y"),toupper(format(SDATE,"%m")),format(SDATE,"%d"),sep="");#In YYYYMMDD format

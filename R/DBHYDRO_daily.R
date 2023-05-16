@@ -5,12 +5,15 @@
 #' @param DBK SFWMD daily data site and data type identifier
 #' @keywords discharge weather stage
 #' @return This function returns daily hydrometerological (discharge, stage(WL) and meterological parameters) dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management.
+#' @importFrom utils read.csv
 #' @export
 #' @examples
+#' \dontrun{
 #' # Daily Discharge Data
 #' sdate=as.Date("2001-05-01");
 #' edate=as.Date("2002-05-01");
 #' dat=DBHYDRO_daily(SDATE,EDATE,"FE771")
+#' }
 
 DBHYDRO_daily=function(SDATE,EDATE,DBK){
   #Returns daily data from SFWMD DBHydro

@@ -9,6 +9,8 @@
 #' @param col.adj factor modifying the opacity alpha. See alpha.f in adjustcolor()
 #' @param lwd lines width around polygon
 #' @keywords shaded
+#' @importFrom grDevices adjustcolor
+#' @importFrom graphics polygon
 #' @export
 #' @return draws polygon based on x, y (upper and lower) values
 #' @note  see polygon() function

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,25 +33,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">AnalystHelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/swampthingpaul/AnalystHelper/">
+  <a href="https://github.com/swampthingpaul/AnalystHelper/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -66,33 +62,32 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="analysthelper-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#analysthelper-" class="anchor"></a>AnalystHelper <img src="./hex/AnalystHelper_hex.png" align="right" height="120">
+<div class="section level1">
+<div class="page-header"><h1 id="analysthelper-">AnalystHelper <img src="./hex/AnalystHelper_hex.png" align="right" height="120"><a class="anchor" aria-label="anchor" href="#analysthelper-"></a>
 </h1></div>
-
-<p>A package of functions that I have accumulated through the years and have kept as <code>CommonlyUsedFunctions.R</code> on my hard drive and would use <code><a href="https://rdrr.io/r/base/source.html">source()</a></code> to utilize these functions. Finally upgraded to building my <code>CommonlyUsedFunctions.R</code> into a functional package.</p>
-<p>Using <code><a href="https://roxygen2.r-lib.org/">library(roxygen2)</a></code> and R-studio “R-package Project” I constructed this package to be shareable amongst collaborators and generally be helpful in day-to-day analyses. Most of these functions are highly specific and constructed in my mind knowing what I knew at the time. Most functions presumably could be optimized, make no sense to others or are redundant with other packages.</p>
+<p><a href="https://zenodo.org/badge/latestdoi/179672539" class="external-link"><img src="https://zenodo.org/badge/179672539.svg" alt="DOI"></a></p>
+<p>A package of functions that I have accumulated through the years and have kept as <code>CommonlyUsedFunctions.R</code> on my hard drive and would use <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> to utilize these functions. Finally upgraded to building my <code>CommonlyUsedFunctions.R</code> into a functional package.</p>
+<p>Using <code><a href="https://roxygen2.r-lib.org/" class="external-link">library(roxygen2)</a></code> and R-studio “R-package Project” I constructed this package to be shareable amongst collaborators and generally be helpful in day-to-day analyses. Most of these functions are highly specific and constructed in my mind knowing what I knew at the time. Most functions presumably could be optimized, make no sense to others or are redundant with other packages.</p>
 <p><strong><em>Please excuse any grammatical/text errors</em></strong></p>
-<div id="analysthelper-installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#analysthelper-installation" class="anchor"></a>AnalystHelper Installation</h2>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools");# if you do not have it installed on your PC
-devtools::install_github("SwampThingPaul/AnalystHelper")</a></code></pre>
+<div class="section level2">
+<h2 id="analysthelper-installation">AnalystHelper Installation<a class="anchor" aria-label="anchor" href="#analysthelper-installation"></a>
+</h2>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>;<span class="co"># if you do not have it installed on your PC</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SwampThingPaul/AnalystHelper"</span><span class="op">)</span></span></code></pre>
 </div>
-<div id="package-contents" class="section level2">
-<h2 class="hasAnchor">
-<a href="#package-contents" class="anchor"></a>Package contents</h2>
+<div class="section level2">
+<h2 id="package-contents">Package contents<a class="anchor" aria-label="anchor" href="#package-contents"></a>
+</h2>
 <p>This package has several objective includes accessing environmental data, manipulating data and visualizing the data.</p>
 <p>Objectives (<em>not all functions are identified here</em>):</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
-<p><strong>South Florida Water Management District Online Environmental Database (<a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu">DBHYDRO</a>).</strong></p>
-<p>Several functions were developed to directly download data into <code>R</code> from DBHYDRO using URL-based data access (see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf">DBHYDRO User Manual</a>)</p>
+<p><strong>South Florida Water Management District Online Environmental Database (<a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu" class="external-link">DBHYDRO</a>).</strong></p>
+<p>Several functions were developed to directly download data into <code>R</code> from DBHYDRO using URL-based data access (see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf" class="external-link">DBHYDRO User Manual</a>)</p>
 <ul>
-<li>For water quality, soil, fish and vegetation specific data use <code><a href="reference/DBHYDRO_WQ.html">DBHYDRO_WQ()</a></code>. This function requires a date range, Station ID and parameter(s) to be specified. See <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf">DBHYDRO User Manual</a> for more information.</li>
-<li>Daily water water level, discharge and meterolgical specific data use <code><a href="reference/DBHYDRO_daily.html">DBHYDRO_daily()</a></code>. This function requires a date range and site/data-type identifier called a DBKEY (for more information see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf">DBHYDRO User Manual</a>).</li>
-<li>Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use <code><a href="reference/DBHYDRO_breakpoint.html">DBHYDRO_breakpoint()</a></code>. This function requires a date range and site/data-type identifier called a DBKEY (for more information see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf">DBHYDRO User Manual</a>). <ins>Currently this function is <em>UNDER FURTHER DEVELOPMENT</em>__* due to issues with internet connect timing out. The function is still available but buggy.</ins>
+<li>For water quality, soil, fish and vegetation specific data use <code><a href="reference/DBHYDRO_WQ.html">DBHYDRO_WQ()</a></code>. This function requires a date range, Station ID and parameter(s) to be specified. See <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf" class="external-link">DBHYDRO User Manual</a> for more information.</li>
+<li>Daily water water level, discharge and meterolgical specific data use <code><a href="reference/DBHYDRO_daily.html">DBHYDRO_daily()</a></code>. This function requires a date range and site/data-type identifier called a DBKEY (for more information see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf" class="external-link">DBHYDRO User Manual</a>).</li>
+<li>Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use <code><a href="reference/DBHYDRO_breakpoint.html">DBHYDRO_breakpoint()</a></code>. This function requires a date range and site/data-type identifier called a DBKEY (for more information see <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf" class="external-link">DBHYDRO User Manual</a>). <ins>Currently this function is <em>UNDER FURTHER DEVELOPMENT</em>__* due to issues with internet connect timing out. The function is still available but buggy.</ins>
 </li>
 </ul>
 </li>
@@ -127,7 +122,7 @@ devtools::install_github("SwampThingPaul/AnalystHelper")</a></code></pre>
 </li>
 <li>
 <p><strong>read.access()</strong></p>
-<p><code><a href="reference/read.access.html">read.access()</a></code> streamlines the process of reading MS Access tables into <code>R</code> by using the <code>RODBC</code> package. For some systems, Microsoft Access Database Engine 2010 may need to be install. <a href="https://www.microsoft.com/en-us/download/details.aspx?id=13255">Here</a> is the link for Redistributable installer.</p>
+<p><code><a href="reference/read.access.html">read.access()</a></code> streamlines the process of reading MS Access tables into <code>R</code> by using the <code>RODBC</code> package. For some systems, Microsoft Access Database Engine 2010 may need to be install. <a href="https://www.microsoft.com/en-us/download/details.aspx?id=13255" class="external-link">Here</a> is the link for Redistributable installer.</p>
 </li>
 </ol>
 <hr>
@@ -137,41 +132,50 @@ devtools::install_github("SwampThingPaul/AnalystHelper")</a></code></pre>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/swampthingpaul/AnalystHelper/">https://​github.com/​swampthingpaul/​AnalystHelper/​</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/mit-license.php">MIT</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Paul Julian <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-7617-1354" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://github.com/swampthingpaul/AnalystHelper/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://zenodo.org/badge/latestdoi/179672539"><img src="https://zenodo.org/badge/179672539.svg" alt="DOI"></a></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing AnalystHelper</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Paul Julian <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-7617-1354" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Paul Julian.</p>
+  <p></p>
+<p>Developed by Paul Julian.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -179,6 +183,8 @@ devtools::install_github("SwampThingPaul/AnalystHelper")</a></code></pre>
 
   
 
+
+  
 
   </body>
 </html>

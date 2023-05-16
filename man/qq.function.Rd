@@ -16,7 +16,9 @@ Part of the qqnorm generic function
 Calculation of theortical quantile (Quantile-Quantile Plot)
 }
 \examples{
+\donttest{
 set.seed(123)
 test=lm(rnorm(100)~rnorm(100)+100)
 qq.function(test$residuals)
+}
 }
