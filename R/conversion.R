@@ -21,11 +21,11 @@
 #' cfs.to.m3d(350)
 
 #' @export
-cfs.to.m3d=function(x) x*2446.58
+cfs.to.m3d=function(x) x*2446.57562905453
 #' @export
-cfs.to.km3d=function(x) x*2.44658e-6
+cfs.to.km3d=function(x) x*2.44657562905453
 #' @export
-cfs.to.acftd=function(x) x*1.98347
+cfs.to.acftd=function(x) x*1.98347114207859
 #' @export
 mt.to.kg=function(x) x*1000
 #' @export
@@ -33,7 +33,7 @@ kg.to.mt=function(x) x/1000
 #' @export
 acres.to.m2=function(x)x*4046.86
 #' @export
-m3d.to.cfs=function(x) x/2446.58
+m3d.to.cfs=function(x) x/2446.57562905453
 #' @export
 ft.to.m=function(x) x*0.3048
 #' @export
@@ -46,3 +46,9 @@ degC.to.F=function(x) (x*9/5)+32
 in.to.cm=function(x) x*2.54
 #' @export
 hPa.to.mmHg=function(x) x*0.75006157584566
+#' @export
+acft.to.L=function(x) x*1233481.8375475
+#' @export
+acft.to.m3d=function(x) x*1233.4818375475
+#' @export
+m2.to.acres=function(x) x/4046.86

@@ -1,4 +1,4 @@
-#' Data retrievial from South Florida Water Management District online database (DBHYDRO)
+#' Data retrieval from South Florida Water Management District online database (DBHYDRO)
 #'
 #' @param date_min input start date as.Date (YYYY-MM-DD)
 #' @param date_max input end date as.Date

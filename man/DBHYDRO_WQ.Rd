@@ -2,7 +2,7 @@
 % Please edit documentation in R/DBHYDRO_WQ.R
 \name{DBHYDRO_WQ}
 \alias{DBHYDRO_WQ}
-\title{Data retrievial from South Florida Water Management District online database (DBHYDRO)}
+\title{Data retrieval from South Florida Water Management District online database (DBHYDRO)}
 \usage{
 DBHYDRO_WQ(
   date_min,
@@ -42,7 +42,7 @@ DBHYDRO_WQ(
 This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
 }
 \description{
-Data retrievial from South Florida Water Management District online database (DBHYDRO)
+Data retrieval from South Florida Water Management District online database (DBHYDRO)
 }
 \examples{
 # Water Quality Data

@@ -5,11 +5,10 @@
 #' @importFrom stats approxfun qnorm sd
 #' @return Part of the qqnorm generic function
 #' @examples
-#' \donttest{
-#' set.seed(123)
-#' test=lm(rnorm(100)~rnorm(100)+100)
-#' qq.function(test$residuals)
-#' }
+#' # set.seed(123)
+#' # test=lm(rnorm(100)~rnorm(100)+100)
+#' # qq.function(test$residuals)
+
 
 qq.function=function(y){
   n=length(y)

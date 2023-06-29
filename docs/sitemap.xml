@@ -34,6 +34,12 @@
     <loc>/reference/date_fun.html</loc>
   </url>
   <url>
+    <loc>/reference/DBHYDRO.meta.byDBKEY.html</loc>
+  </url>
+  <url>
+    <loc>/reference/DBHYDRO.meta.bysite.html</loc>
+  </url>
+  <url>
     <loc>/reference/DBHYDRO_breakpoint.html</loc>
   </url>
   <url>
@@ -77,6 +83,9 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/leg.fun.html</loc>
   </url>
   <url>
     <loc>/reference/Load.Calc.kg.html</loc>
