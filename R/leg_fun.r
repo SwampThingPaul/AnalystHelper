@@ -18,7 +18,7 @@ leg.fun=function(b,pal,leg.title,
                  title.cex=0.8,title.pos=3,title.adj=0,
                  title.x=NULL,title.y=NULL,labs=NULL,n.bks=NULL,
                  leg.type=c("continuous","categorical"), ...){
-  # l.b=length(b)
+  l.b=if(is.null(b)==T){n.bks}else{length(b)}
   labs=if(is.null(labs)==T){c(paste0("< ",b[2]),paste(b[2:(l.b-2)],b[3:(l.b-1)],sep=" - "),paste(paste0(">",b[(l.b-1)])))}else{labs}
   n.bks=if(is.null(n.bks)==T){length(b)-1}else{n.bks}
   mid.v.val=if(is.null(mid.v.val)==T){bot.val+(top.val-bot.val)/2}else{mid.v.val}
