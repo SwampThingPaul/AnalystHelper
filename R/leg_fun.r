@@ -16,11 +16,11 @@ leg.fun=function(b,pal,leg.title,
                  txt.offset.val=-0.01,txt.y=NULL,leg.txt=NULL,
                  txt.cex=0.75,txt.adj=0,txt.pos=4,txt.offset=0.5,
                  title.cex=0.8,title.pos=3,title.adj=0,
-                 title.x=NULL,title.y=NULL,
+                 title.x=NULL,title.y=NULL,labs=NULL,n.bks=NULL,
                  leg.type=c("continuous","categorical"), ...){
-  l.b=length(b)
-  labs=c(paste0("< ",b[2]),paste(b[2:(l.b-2)],b[3:(l.b-1)],sep=" - "),paste(paste0(">",b[(l.b-1)])))
-  n.bks=length(b)-1
+  # l.b=length(b)
+  labs=if(is.null(labs)==T){c(paste0("< ",b[2]),paste(b[2:(l.b-2)],b[3:(l.b-1)],sep=" - "),paste(paste0(">",b[(l.b-1)])))}else{labs}
+  n.bks=if(is.null(n.bks)==T){length(b)-1}else{n.bks}
   mid.v.val=if(is.null(mid.v.val)==T){bot.val+(top.val-bot.val)/2}else{mid.v.val}
 
   mid.val=if(is.null(mid.val)==T){x.min+(x.max-x.min)/2}else{mid.val}

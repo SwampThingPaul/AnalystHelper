@@ -26,6 +26,8 @@ leg.fun(
   title.adj = 0,
   title.x = NULL,
   title.y = NULL,
+  labs = NULL,
+  n.bks = NULL,
   leg.type = c("continuous", "categorical"),
   ...
 )

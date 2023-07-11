@@ -8,7 +8,7 @@
 #' @export
 #' @return This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
 #' @importFrom utils browseURL read.csv
-#' @importFrom rvest read_html
+#' @importFrom rvest read_html html_table
 #'
 #' @examples
 #' # Water Quality Data
