@@ -23,7 +23,7 @@
 #' @export
 cfs.to.m3d=function(x) x*2446.57562905453
 #' @export
-cfs.to.km3d=function(x) x*2.44657562905453
+cfs.to.km3d=function(x) x/408700
 #' @export
 cfs.to.acftd=function(x) x*1.98347114207859
 #' @export
