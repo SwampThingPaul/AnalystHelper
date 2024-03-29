@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">AnalystHelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -55,7 +55,8 @@
 <span>  <span class="va">EDATE</span>,</span>
 <span>  <span class="va">DBK</span>,</span>
 <span>  col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATETIME"</span>, <span class="st">"Station"</span>, <span class="st">"DBKEY"</span>, <span class="st">"Data.Value"</span>, <span class="st">"Flag"</span>, <span class="st">"Comment"</span><span class="op">)</span>,</span>
-<span>  timeout <span class="op">=</span> <span class="fl">200</span></span>
+<span>  timeout <span class="op">=</span> <span class="fl">200</span>,</span>
+<span>  offset <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -71,6 +72,10 @@
 
 <dt>DBK</dt>
 <dd><p>SFWMD daily data site and data type identifier</p></dd>
+
+
+<dt>offset</dt>
+<dd><p>the values used to remove the data file header.</p></dd>
 
 </dl></div>
     <div id="value">

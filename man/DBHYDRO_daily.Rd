@@ -4,7 +4,7 @@
 \alias{DBHYDRO_daily}
 \title{Data retrievial from South Florida Water Management District online database (DBHYDRO)}
 \usage{
-DBHYDRO_daily(SDATE, EDATE, DBK)
+DBHYDRO_daily(SDATE, EDATE, DBK, offset = 4)
 }
 \arguments{
 \item{SDATE}{input start date as.Date (YYYY-MM-DD)}
@@ -12,6 +12,8 @@ DBHYDRO_daily(SDATE, EDATE, DBK)
 \item{EDATE}{input end date as.Date (YYYY-MM-DD)}
 
 \item{DBK}{SFWMD daily data site and data type identifier}
+
+\item{offset}{the values used to remove the data file header.}
 }
 \value{
 This function returns daily hydrometerological (discharge, stage(WL) and meterological parameters) dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management.

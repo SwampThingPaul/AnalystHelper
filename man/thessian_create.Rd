@@ -4,7 +4,7 @@
 \alias{thessian_create}
 \title{GIS Function to create thessian polygons from spatial points.}
 \usage{
-thessian_create(data, clip, plot = T, full.extent = T)
+thessian_create(data, clip, plot = T)
 }
 \arguments{
 \item{data}{spatial dataset}
@@ -12,8 +12,6 @@ thessian_create(data, clip, plot = T, full.extent = T)
 \item{clip}{polygon (i.e. study area) to clip the thessian polygons.}
 
 \item{plot}{to plot the generate thessian polygons}
-
-\item{full.extent}{extend the thessian polygons to the full extent of the clip-layer.}
 }
 \value{
 Returns a spatial thessian polygon

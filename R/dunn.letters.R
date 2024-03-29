@@ -25,5 +25,6 @@
 #' }
 
 dunn.letters=function(levels,x,y,labels,col2=col2,cex2=cex2){
-  for(i in 1:levels){text(x=x[i],y=y[i],labels=paste0(labels[i]),col=col2,cex=cex2,pos=3)}
+  .Deprecated('dunn.letters')
+  # for(i in 1:levels){text(x=x[i],y=y[i],labels=paste0(labels[i]),col=col2,cex=cex2,pos=3)}
 }

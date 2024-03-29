@@ -9,7 +9,8 @@ DBHYDRO_breakpoint(
   EDATE,
   DBK,
   col.names = c("DATETIME", "Station", "DBKEY", "Data.Value", "Flag", "Comment"),
-  timeout = 200
+  timeout = 200,
+  offset = 2
 )
 }
 \arguments{
@@ -18,6 +19,8 @@ DBHYDRO_breakpoint(
 \item{EDATE}{input end date as.Date (YYYY-MM-DD)}
 
 \item{DBK}{SFWMD daily data site and data type identifier}
+
+\item{offset}{the values used to remove the data file header.}
 }
 \value{
 This function returns breakpoint (i.e. 15-minute) hydrometerological (discharge, stage(WL) and meterological parameters) dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management.
