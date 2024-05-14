@@ -7,7 +7,7 @@
 #' @return return the number of real values.
 #' @examples
 #'example=c(rnorm(12),NA,NA,NA)
-#'N(example);# versus length(example)
+#'# N(example);# versus length(example)
 #'N.obs(example)
 
 #N=function(x,NA.val="NA") length(which(x!=NA.val))

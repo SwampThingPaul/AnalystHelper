@@ -15,6 +15,9 @@
 #' @param pt.col color of point
 #' @param length length of the edges of the error bar head (in inches).
 #' @keywords error
+#' @importFrom graphics points
+#' @importFrom graphics lines
+#' @importFrom graphics arrows
 #' @export
 #' @return draws lines in the form of error bars
 #' @note  see arrows(), errorbars() and pt_error() functions

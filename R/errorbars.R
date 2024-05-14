@@ -10,6 +10,7 @@
 #'@keywords error
 #'@export
 #'@return draws lines in the form of error bars
+#'@importFrom graphics arrows
 #'@note  see arrows() function
 #'@examples
 #'x.val=c(1,2,3)

@@ -2,9 +2,18 @@
 % Please edit documentation in R/DBHYDRO_daily.R
 \name{DBHYDRO_daily}
 \alias{DBHYDRO_daily}
-\title{Data retrievial from South Florida Water Management District online database (DBHYDRO)}
+\title{Data retrieval from South Florida Water Management District online database (DBHYDRO)}
 \usage{
-DBHYDRO_daily(SDATE, EDATE, DBK, offset = 4)
+DBHYDRO_daily(
+  SDATE,
+  EDATE,
+  DBK,
+  dataonly = TRUE,
+  period = "uspec",
+  v_target_code = "file_csv",
+  vert_datum = 1,
+  ...
+)
 }
 \arguments{
 \item{SDATE}{input start date as.Date (YYYY-MM-DD)}
@@ -13,20 +22,28 @@ DBHYDRO_daily(SDATE, EDATE, DBK, offset = 4)
 
 \item{DBK}{SFWMD daily data site and data type identifier}
 
-\item{offset}{the values used to remove the data file header.}
+\item{dataonly}{DEFAULT is TRUE to return a data.frame of data, if set to FALSE it will return a nested list of two data.frame labeled METADATA and REPORT.}
+
+\item{period}{DEFAULT set to "uspec" for URL query}
+
+\item{v_target_code}{DEFAULT set to "file_csv" to return a CSV file}
+
+\item{vert_datum}{DEFAULT set to 1 for NGVD29 vertical datum; 2 = NAVD88 vertical datum}
+
+\item{...}{to allow for more functionality and flexibility in building URL queries}
 }
 \value{
 This function returns daily hydrometerological (discharge, stage(WL) and meterological parameters) dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management.
 }
 \description{
-Data retrievial from South Florida Water Management District online database (DBHYDRO)
+Data retrieval from South Florida Water Management District online database (DBHYDRO)
 }
 \examples{
 \dontrun{
 # Daily Discharge Data
 sdate=as.Date("2001-05-01");
 edate=as.Date("2002-05-01");
-dat=DBHYDRO_daily(SDATE,EDATE,"FE771")
+dat=DBHYDRO_daily(sdate,edate,"FE771")
 }
 }
 \keyword{discharge}

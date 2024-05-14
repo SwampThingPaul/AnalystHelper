@@ -11,18 +11,8 @@
 #' @return Helper function to add letters indicating statitcal significance.
 #' @note Use in combination with dunn.test::dunn.test() and rcompanion::cldList()
 #' @examples
-#' \dontrun{
-#' library(dunn.test)
-#' library(rcompanion)
-#'
-#' set.seed(123)
-#' data=data.frame(group=c(rep("alpha",5),rep("beta",5),rep("delta",5)),value=c(runif(5,max=2),runif(5,min=4,max=10),runif(5,min=12,max=30)))
-#'
-#' DT=with(data,dunn.test(value,group))
-#' rslt=toupper(cldList(P.adjusted ~ comparison,data=DT,threshold = 0.05)$Letter)
-#' boxplot(value~group,data,ylim=c(0,40))
-#' dunn.letters(3,1:3,c(2,10,30),rslt,"red",1)
-#' }
+#' ## Function id deprecated
+
 
 dunn.letters=function(levels,x,y,labels,col2=col2,cex2=cex2){
   .Deprecated('dunn.letters')

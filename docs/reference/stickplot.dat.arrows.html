@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">AnalystHelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -81,10 +81,10 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="va">wx.dat2005</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"https://www.ndbc.noaa.gov/view_text_file.php?filename=lonf1h2005.txt.gz&amp;dir=data/historical/stdmet/"</span>,sep<span class="op">=</span><span class="st">""</span>,header<span class="op">=</span><span class="cn">T</span>,na.strings<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"99"</span>,<span class="st">"999"</span>,<span class="st">"9999.0"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># wx.dat2005=read.table("https://www.ndbc.noaa.gov/view_text_file.php?filename=lonf1h2005.txt.gz&amp;dir=data/historical/stdmet/",sep="",header=T,na.strings=c("99","999","9999.0"))</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">WSPD</span><span class="op">~</span><span class="va">DateTime.EST</span>,<span class="va">wx.dat2005.tmp</span>,type<span class="op">=</span><span class="st">"n"</span>,ylab<span class="op">=</span><span class="st">"Wind Speed (m/s)"</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">stickplot.dat.arrows</span><span class="op">(</span><span class="va">DateTime.EST</span>,<span class="va">WSPD</span>,<span class="va">WD</span>,<span class="va">wx.dat2005.tmp</span>,col<span class="op">=</span><span class="st">"green"</span>,lty<span class="op">=</span><span class="fl">1</span>,lwd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot(WSPD~DateTime.EST,wx.dat2005.tmp,type="n",ylab="Wind Speed (m/s)",ylim=c(-20,30))</span></span></span>
+<span class="r-in"><span><span class="co"># stickplot.dat.arrows(DateTime.EST,WSPD,WD,wx.dat2005.tmp,col="green",lty=1,lwd=1)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

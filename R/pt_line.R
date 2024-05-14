@@ -12,6 +12,8 @@
 #' @param pt.lty line type for points
 #' @param pt.col  color of point
 #' @keywords points lines
+#' @importFrom graphics points
+#' @importFrom graphics lines
 #' @export
 #' @return draws points and lines together.
 #' @note  see points() and lines() functions
