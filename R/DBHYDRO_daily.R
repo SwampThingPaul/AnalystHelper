@@ -39,10 +39,12 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   # v_target_code <- "file_csv"
   # vert_datum <- 1 #1 = NGVD29; 2 = NAVD88
 
-  if(is.date(SDATE)==F|is.date(EDATE)==F){# |!(nchar(SDATE)==10&nchar(EDATE)==10)){
-    stop("Enter dates as a date. ")
-    # stop("Enter dates as character strings in YYYY-MM-DD format or as.Date(...)")
-  }
+  # Add warning about date format
+  # if(is.date(SDATE)==F|is.POSIXct(SDATE)==F|
+  #    is.date(EDATE)==F|is.POSIXct(EDATE)==F){# |!(nchar(SDATE)==10&nchar(EDATE)==10)){
+  #   stop("Enter dates as a date. ")
+  #   # stop("Enter dates as character strings in YYYY-MM-DD format or as.Date(...)")
+  # }
   if(all(is.na(DBK))==T){
     stop("Must specify either a dbkey")
   }
