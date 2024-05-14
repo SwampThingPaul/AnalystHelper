@@ -27,7 +27,7 @@ Objectives (*not all functions are identified here*):
 
     - For water quality, soil, fish and vegetation specific data use `DBHYDRO_WQ()`. This function requires a date range, Station ID and parameter(s) to be specified. See [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf) for more information.
     - Daily water water level, discharge and meterolgical specific data use `DBHYDRO_daily()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)).
-    - Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use `DBHYDRO_breakpoint()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)). <ins>Currently this function is *UNDER FURTHER DEVELOPMENT*__* due to issues with internet connect timing out. The function is still available but buggy.</ins>
+    - Breakpoint (typically 15-minute interval) water level, discharge and meterolgical specific data use `DBHYDRO_breakpoint()`. This function requires a date range and site/data-type identifier called a DBKEY (for more information see [DBHYDRO User Manual](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)).
 
 2. **Data manipulation/handling**
 

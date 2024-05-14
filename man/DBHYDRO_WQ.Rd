@@ -7,12 +7,13 @@
 DBHYDRO_WQ(
   date_min,
   date_max,
-  station_id,
-  test_number,
+  station_id = NA,
+  test_number = NA,
+  collect_method = NULL,
   matrix = "SW",
   cust_str = NULL,
-  Exclude.FieldQC = "Y",
-  Exclude.Flagged = "Y",
+  Exclude.FieldQC = T,
+  Exclude.Flagged = T,
   sample_type = "SAMP",
   target_code = "file_csv"
 )
@@ -22,17 +23,19 @@ DBHYDRO_WQ(
 
 \item{date_max}{input end date as.Date}
 
-\item{station_id}{SFWMD Water Quality Monitoring location}
+\item{station_id}{SFWMD Water Quality Monitoring location, see details}
 
 \item{test_number}{corresponds to SFWMD data management system}
 
-\item{matrix}{default is "SW" for surface water other variables include "BAL","BAN","DI","BFE","BFI","GW","PERI","BPL","PW","RA","SE","SO","UNK"}
+\item{collect_method}{default is NULL but can specify G, GP, ACF, ACT, ADT}
 
-\item{cust_str}{custom HTML string to add to query, example "+and+station_id+in+('L31NNGW4')" to look for a specific location (if station_id is NULL)}
+\item{matrix}{default is "SW" for surface water}
 
-\item{Exclude.FieldQC}{true/false field}
+\item{cust_str}{custom sql query string to add to link (not implemented)}
 
-\item{Exclude.Flagged}{true/false field}
+\item{Exclude.FieldQC}{true/false field, DEFAULT is TRUE}
+
+\item{Exclude.Flagged}{true/false field, DEFAULT is TRUE}
 
 \item{sample_type}{default 'SAMP'}
 
@@ -44,12 +47,23 @@ This function returns water quality dataset from the SFWMD monitoring network (h
 \description{
 Data retrieval from South Florida Water Management District online database (DBHYDRO)
 }
+\details{
+Sample Type definitions include SAMP=Sample, RS=Replicate Sample, SS= Split Sample, EB=Equipment Blank, FCEB=Field Cleaned Equipment Blank, FD=Field Duplicate
+
+matrix default is "SW" for surface water other variables including "BAL","BAN","DI","BFE","BFI","GW","PERI","BPL","PW","RA","SE","SO","UNK"
+
+target_code can be either "file_csv" (for CSV) and "screen" (launch default browser). Other formats like "file_txt" (for fixed column width) and "file_pdf" (for pdf) and "screen" (launch default browser) have not been implemented
+
+station_id can use wildcard character but not in combination with wildcard and non-wildcard (i.e. S12\%, S333)
+}
 \examples{
 # Water Quality Data
+\dontrun{
 sdate=as.Date("2001-05-01");
 edate=as.Date("2002-05-01");
 parameter=25;#Test Number for Phosphate, Total as P (mg/L)
-dat=DBHYDRO_WQ(sdate,edate,"S12A",parameter,target_code="file_csv")
+dat=DBHYDRO_WQ(sdate,edate,"S12\%",parameter,target_code="file_csv")
+}
 }
 \keyword{"water}
 \keyword{quality"}

@@ -53,12 +53,13 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">DBHYDRO_WQ</span><span class="op">(</span></span>
 <span>  <span class="va">date_min</span>,</span>
 <span>  <span class="va">date_max</span>,</span>
-<span>  <span class="va">station_id</span>,</span>
-<span>  <span class="va">test_number</span>,</span>
+<span>  station_id <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  test_number <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  collect_method <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  matrix <span class="op">=</span> <span class="st">"SW"</span>,</span>
 <span>  cust_str <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  Exclude.FieldQC <span class="op">=</span> <span class="st">"Y"</span>,</span>
-<span>  Exclude.Flagged <span class="op">=</span> <span class="st">"Y"</span>,</span>
+<span>  Exclude.FieldQC <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  Exclude.Flagged <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  sample_type <span class="op">=</span> <span class="st">"SAMP"</span>,</span>
 <span>  target_code <span class="op">=</span> <span class="st">"file_csv"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -75,27 +76,31 @@
 
 
 <dt>station_id</dt>
-<dd><p>SFWMD Water Quality Monitoring location</p></dd>
+<dd><p>SFWMD Water Quality Monitoring location, see details</p></dd>
 
 
 <dt>test_number</dt>
 <dd><p>corresponds to SFWMD data management system</p></dd>
 
 
+<dt>collect_method</dt>
+<dd><p>default is NULL but can specify G, GP, ACF, ACT, ADT</p></dd>
+
+
 <dt>matrix</dt>
-<dd><p>default is "SW" for surface water other variables include "BAL","BAN","DI","BFE","BFI","GW","PERI","BPL","PW","RA","SE","SO","UNK"</p></dd>
+<dd><p>default is "SW" for surface water</p></dd>
 
 
 <dt>cust_str</dt>
-<dd><p>custom HTML string to add to query, example "+and+station_id+in+('L31NNGW4')" to look for a specific location (if station_id is NULL)</p></dd>
+<dd><p>custom sql query string to add to link (not implemented)</p></dd>
 
 
 <dt>Exclude.FieldQC</dt>
-<dd><p>true/false field</p></dd>
+<dd><p>true/false field, DEFAULT is TRUE</p></dd>
 
 
 <dt>Exclude.Flagged</dt>
-<dd><p>true/false field</p></dd>
+<dd><p>true/false field, DEFAULT is TRUE</p></dd>
 
 
 <dt>sample_type</dt>
@@ -112,14 +117,23 @@
 
 <p>This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .</p>
     </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>Sample Type definitions include SAMP=Sample, RS=Replicate Sample, SS= Split Sample, EB=Equipment Blank, FCEB=Field Cleaned Equipment Blank, FD=Field Duplicate</p>
+<p>matrix default is "SW" for surface water other variables including "BAL","BAN","DI","BFE","BFI","GW","PERI","BPL","PW","RA","SE","SO","UNK"</p>
+<p>target_code can be either "file_csv" (for CSV) and "screen" (launch default browser). Other formats like "file_txt" (for fixed column width) and "file_pdf" (for pdf) and "screen" (launch default browser) have not been implemented</p>
+<p>station_id can use wildcard character but not in combination with wildcard and non-wildcard (i.e. S12%, S333)</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Water Quality Data</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">sdate</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2001-05-01"</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span><span class="va">edate</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2002-05-01"</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span><span class="va">parameter</span><span class="op">=</span><span class="fl">25</span>;<span class="co">#Test Number for Phosphate, Total as P (mg/L)</span></span></span>
-<span class="r-in"><span><span class="va">dat</span><span class="op">=</span><span class="fu">DBHYDRO_WQ</span><span class="op">(</span><span class="va">sdate</span>,<span class="va">edate</span>,<span class="st">"S12A"</span>,<span class="va">parameter</span>,target_code<span class="op">=</span><span class="st">"file_csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dat</span><span class="op">=</span><span class="fu">DBHYDRO_WQ</span><span class="op">(</span><span class="va">sdate</span>,<span class="va">edate</span>,<span class="st">"S12%"</span>,<span class="va">parameter</span>,target_code<span class="op">=</span><span class="st">"file_csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>

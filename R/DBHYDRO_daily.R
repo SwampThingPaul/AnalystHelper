@@ -61,6 +61,9 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
 
   link=paste(servfull,paste(paste(names(qy),qy,sep="="),collapse="&"),sep="?")
+
+  if(v_target_code=="screen"){browseURL(link)}
+
   res=readLines(link)
 
   raw <- suppressMessages(read.csv(text = res, skip = 1,stringsAsFactors = FALSE, row.names = NULL))
