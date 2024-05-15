@@ -5,8 +5,8 @@
 \title{Data retrieval from South Florida Water Management District online database (DBHYDRO)}
 \usage{
 DBHYDRO_WQ(
-  date_min,
-  date_max,
+  date_min = NULL,
+  date_max = NULL,
   station_id = NA,
   test_number = NA,
   collect_method = NULL,

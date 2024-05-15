@@ -62,7 +62,7 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
 
   link=paste(servfull,paste(paste(names(qy),qy,sep="="),collapse="&"),sep="?")
 
-  if(v_target_code=="screen"){browseURL(link)}
+  if(v_target_code=="screen"){browseURL(link)}else{
 
   res=readLines(link)
 
@@ -100,7 +100,7 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   if(dataonly==TRUE){
     return(final$REPORT)
   }else{final}
-
+}
 }
 
 #' @export

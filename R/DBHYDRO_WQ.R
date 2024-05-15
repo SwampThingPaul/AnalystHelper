@@ -33,7 +33,7 @@
 #' dat=DBHYDRO_WQ(sdate,edate,"S12%",parameter,target_code="file_csv")
 #' }
 
-DBHYDRO_WQ=function(date_min,date_max,station_id=NA,
+DBHYDRO_WQ=function(date_min=NULL,date_max=NULL,station_id=NA,
                     test_number=NA,collect_method=NULL,
                     matrix="SW",cust_str=NULL,
                     Exclude.FieldQC = T,Exclude.Flagged = T,
@@ -46,7 +46,10 @@ DBHYDRO_WQ=function(date_min,date_max,station_id=NA,
 
   ## Date Formatting
   date_min <- paste("'",paste(format(date_min,"%d"),toupper(format(date_min,"%b")),format(date_min,"%Y"),sep="-"),"'",sep="")
+  date_min <- if(is.null(date_min)==F){paste("date_collected",">=",date_min,sep="+")}else{NULL}
+
   date_max <- paste("'",paste(format(date_max,"%d"),toupper(format(date_max,"%b")),format(date_max,"%Y"),sep="-"),"'",sep="")
+  date_max <- if(is.null(date_max)==F){paste("date_collected","<",date_max,sep="+")}else{NULL}
 
   ## To account for wildcard searching
   station_like <- station_id[grepl("%", station_id)]
@@ -78,32 +81,35 @@ DBHYDRO_WQ=function(date_min,date_max,station_id=NA,
   matrix_val=paste("(", paste("'", matrix, "'", sep = "", collapse = ","),")", sep = "")
   matrix_val= if(is.null(matrix_val)==F){paste("matrix", "in",matrix_val,sep="+")}else{NULL}
 
-  collect_method_val <- paste("(", paste("'", collect_method, "'", sep = "", collapse = ","),")", sep = "")
-  collect_method_val <- if(is.null(collect_method_val)==F){paste("collect_method", "in",collect_method_val,sep="+")}else{NULL}
+  collect_method_val <- if(is.null(collect_method)==F){paste("(", paste("'", collect_method, "'", sep = "", collapse = ","),")", sep = "")}
+  collect_method_val <- if(is.null(collect_method)==F){paste("collect_method", "in",collect_method_val,sep="+")}else{NULL}
 
   Exclude.FieldQC <- if(Exclude.FieldQC == TRUE){"Y"}else{"N"}
   Exclude.Flagged <- if(Exclude.Flagged == TRUE){"Y"}else{"N"}
 
   if( stat.like.N >0 & any(!is.na(station_like))){
     qy <- list(v_where_clause = paste("where",
-                                      if(is.null(station_like)==F){paste(station_like_val,"and",sep="+")},
-                                      if(is.null(test_number)==F){paste(test_number_val,"and",sep="+")},#else{test_name_val},
-                                      if(is.null(matrix_val)==F){paste(matrix_val,"and",sep="+")},
-                                      if(is.null(collect_method)==F){paste(collect_method_val,"and",sep="+")},
-                                      "date_collected",">=",date_min, "and", "date_collected","<",date_max,
-                                      if(is.null(sample_type_new)==F){paste("and",sample_type_new,sep="+")}, sep = "+"),
+                                      paste(c(if(is.null(station_like)==F){station_like_val},
+                                        if(is.null(test_number)==F){test_number_val},#else{test_name_val},
+                                        if(is.null(matrix_val)==F){matrix_val},
+                                        if(is.null(collect_method)==F){collect_method_val},
+                                        if(is.null(date_min)==F){date_min},
+                                        if(is.null(date_max)==F){date_max},
+                                        if(is.null(sample_type_new)==F){sample_type_new}), collapse = "+and+"),sep="+"),
                v_exc_qc = Exclude.FieldQC, v_exc_flagged = Exclude.Flagged,v_target_code = target_code)
   }else{
     qy <- list(v_where_clause = paste("where",
-                                      if(is.null(station_list)==F){paste(station_list,"and",sep="+")},
-                                      if(is.null(test_number)==F){paste(test_number_val,"and",sep="+")},#else{test_name_val},
-                                      if(is.null(matrix_val)==F){paste(matrix_val,"and",sep="+")},
-                                      if(is.null(collect_method)==F){paste(collect_method_val,"and",sep="+")},
-                                      "date_collected",">=",date_min, "and", "date_collected","<",date_max,
-                                      if(is.null(sample_type_new)==F){paste("and",sample_type_new,sep="+")}, sep = "+"),
+                                      paste(c(if(is.null(station_id)==F){station_list},
+                                        if(is.null(test_number)==F){test_number_val},#else{test_name_val},
+                                        if(is.null(matrix_val)==F){matrix_val},
+                                        if(is.null(collect_method)==F){collect_method_val},
+                                        if(is.null(date_min)==F){date_min},
+                                        if(is.null(date_max)==F){date_max},
+                                        if(is.null(sample_type_new)==F){sample_type_new}), collapse = "+and+"),sep="+"),
                v_exc_qc = Exclude.FieldQC, v_exc_flagged = Exclude.Flagged,v_target_code = target_code)
   }
-  qy$v_where_clause=gsub("\\++","\\+",qy$v_where_clause);# incase there is a null and it removes ++
+  # shouldn't need to replace ++ with + in new script but keeping just incase.
+  # qy$v_where_clause=gsub("\\++","\\+",qy$v_where_clause);# incase there is a null and it removes ++
   qy=paste(names(qy),qy,sep="=")
 
   # link=paste0(servfull,qy[1],paste(paste(names(qy[2:4]),qy[2:4],sep="="),collapse="&"))
