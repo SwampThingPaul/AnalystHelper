@@ -28,11 +28,14 @@ date.fun=function(x,tz="EST",form="%F"){
   if(is.null(attr(x,"tzone"))&is.null(tz)){stop("Define Time Zone or set tz value")}
   if(is.null(attr(x,"tzone"))&is.null(tz)==F){as.POSIXct(strptime(x,format=form),tz=tz)
   }else if(attr(x,"tzone")!=tz){
-    attr(x,"tzone")<-tz
-    as.POSIXct(strptime(x,format=form),tz=tz)
+    if(grepl("%X|%H|%M|%I",form)){
+      attr(x,"tzone")<-tz
+      as.POSIXct(strptime(x,format=form),tz=tz)
+    }else{
+      as.POSIXct(strptime(x,format=form),tz=tz)
+    }
   }else{
     as.POSIXct(strptime(x,format=form),tz=tz)
   }
-
 
 }

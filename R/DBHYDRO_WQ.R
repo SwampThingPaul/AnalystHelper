@@ -123,12 +123,12 @@ DBHYDRO_WQ=function(date_min=NULL,date_max=NULL,station_id=NA,
 
     REPORT=read.csv(text=res);
     REPORT=subset(REPORT,is.na(Test.Number)==F)
-    REPORT$Collection_Date=as.POSIXct(strptime(REPORT$Collection_Date,"%d-%b-%Y %R"),tz="America/New_York")
-    REPORT$First.Trigger.Date=as.POSIXct(strptime(REPORT$First.Trigger.Date,"%d-%b-%Y %R"),tz="America/New_York")
-    REPORT$Date=as.POSIXct(strptime(REPORT$Collection_Date,"%F"),tz="America/New_York")
+    REPORT$Collection_Date=date.fun(REPORT$Collection_Date,form="%d-%b-%Y %R",tz="America/New_York")
+    REPORT$First.Trigger.Date=date.fun(REPORT$First.Trigger.Date,form="%d-%b-%Y %R",tz="America/New_York")
+    REPORT$Date=date.fun(REPORT$Collection_Date,form="%F",tz="America/New_York")
     REPORT$DateTime.EST=REPORT$Collection_Date
     attr(REPORT$DateTime.EST,"tzone")<-"EST"
-    REPORT$Date.EST=as.POSIXct(strptime(REPORT$DateTime.EST,"%F"),tz="EST")
+    REPORT$Date.EST=date.fun(REPORT$DateTime.EST)
     # REPORT[,c("Collection_Date","DateTime.EST","Date.EST")]
     REPORT$HalfMDL=with(REPORT,ifelse(Value<0,abs(Value)/2,Value))
 
