@@ -42,7 +42,7 @@ DBHYDRO_WQ=function(date_min=NULL,date_max=NULL,station_id=NA,
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full?"
 
   if(date_min>date_max){stop("Check dates date_min can't be after date_max")}
-  if(is.na(test_number)==T){stop("Need to specify test number")}
+  if(sum(is.na(test_number))>0){warning("Either test number is not specified or NA values are present")}
 
   ## Date Formatting
   date_min <- paste("'",paste(format(date_min,"%d"),toupper(format(date_min,"%b")),format(date_min,"%Y"),sep="-"),"'",sep="")

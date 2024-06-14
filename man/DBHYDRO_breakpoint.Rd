@@ -8,6 +8,7 @@ DBHYDRO_breakpoint(
   SDATE,
   EDATE,
   DBK,
+  vert_datum = NA,
   dataonly = TRUE,
   period = "uspec",
   v_target_code = "file_csv",

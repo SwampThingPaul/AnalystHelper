@@ -18,7 +18,7 @@
 #' edate=as.Date("2001-06-01");
 #' dat=DBHYDRO_breakpoint(SDATE,EDATE,"AI516")
 #' }
-DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,dataonly=TRUE,period = "uspec",v_target_code = "file_csv",...){
+DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,vert_datum=NA,dataonly=TRUE,period = "uspec",v_target_code = "file_csv",...){
   # older code ... keeping just incase
   # ,col.names=c("DATETIME","Station","DBKEY","Data.Value","Flag","Comment"),timeout=200,offset=2
   # DBK.val=paste("",DBK,"",collapse="/",sep="")
@@ -33,7 +33,7 @@ DBHYDRO_breakpoint=function(SDATE,EDATE,DBK,dataonly=TRUE,period = "uspec",v_tar
   # REPORT=subset(REPORT,is.na(DATETIME)==F)
   # return(REPORT)
 
-  DAT=DBHYDRO_daily(SDATE,EDATE,DBK,dataonly=dataonly,period = period,v_target_code = v_target_code,vert_datum=NA,...)
+  DAT=DBHYDRO_daily(SDATE,EDATE,DBK,dataonly=dataonly,period = period,v_target_code = v_target_code,vert_datum=vert_datum,...)
   return(DAT)
 
 }
