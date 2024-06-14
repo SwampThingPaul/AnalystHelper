@@ -21,7 +21,12 @@ Date function to convert character/other as.POSIXct to date.
 }
 \examples{
 datetime=as.character(c("2015-05-01 08:00:00","2015-10-15 12:00:00","2015-10-15 5:00:00"))
-date_fun(datetime);# just date
-date_fun(datetime, form="\%F \%X"); #include date and time
+date.fun(datetime);# just date
+date.fun(datetime, form="\%F \%X"); #include date and time
+
+date.fun("2020-05-01")
+date.fun(as.Date("2020-05-01"))
+date.fun(as.POSIXct("2020-05-01 12:00:00",tz="EST"),form="\%F \%H:\%M:\%S")
+date.fun(as.POSIXct("2020-05-01 12:00:00",tz="UTC"),form="\%F \%H:\%M:\%S")
 }
 \keyword{date}
