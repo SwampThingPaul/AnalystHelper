@@ -3,7 +3,7 @@
 #' @param site SFWMD station id
 #' @param type data type ("FLOW","STG","GATE", etc)
 #' @param cat data category ("SW","RAIN","ETP"); default is "SW"
-#' @param ... other html parameters
+#' @param ... other html parameters (i.e. "v_basin=L_OKEE", "v_dbkey_list_flag=Y&v_order_by=STATION","v_station=L001-B")
 #' @keywords "water quality"
 #' @export
 #' @return This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
@@ -16,20 +16,38 @@
 
 
 
-DBHYDRO.meta.bysite=function(site,type,cat="SW",...){
-  # c("FLOW","STG","GATE")
-  # cat = c("SW","RAIN","ETP")
-  # site.vals=paste0("v_site=",site)
+DBHYDRO.meta.bysite=function(site,data_type=NA,cat=NA,freq=NA,stat=NA,...){
+  #station v_station=L001-B
+
+  servfull="https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
+
   if(length(site)>1){
     site.vals=paste(paste0("v_site=",site),collapse="&")
   }else{
     site.vals=paste0("v_site=",site)
   }
 
-  link=paste0("https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched?v_js_flag=Y&v_category=",cat,"&",
-              site.vals,
-              "&v_data_type=",type,
-              "&v_dbkey_list_flag=Y&v_order_by=STATION",...)
+  qy <- list(v_data_type = data_type,
+             v_category = cat,
+             v_frequency = freq,
+             v_statistic_type = stat,
+             ...
+             )
+
+  qy=qy[is.na(qy)==FALSE]
+
+  link=paste0(paste(servfull,site.vals,sep="?"),paste(paste(names(qy),qy,sep="="),collapse="&"))
+
+  # if(length(site)>1){
+  #   site.vals=paste(paste0("v_site=",site),collapse="&")
+  # }else{
+  #   site.vals=paste0("v_site=",site)
+  # }
+  #
+  # link=paste0("https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched?v_js_flag=Y&v_category=",cat,"&",
+  #             site.vals,
+  #             "&v_data_type=",type,
+  #             "&v_dbkey_list_flag=Y&v_order_by=STATION",...)
   rslt.table=read_html(link)
   rslt.table=data.frame(html_table(rslt.table,fill=T)[[5]])
   rslt.table=rslt.table[,2:ncol(rslt.table)]

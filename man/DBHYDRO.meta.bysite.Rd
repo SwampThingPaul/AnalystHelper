@@ -4,16 +4,16 @@
 \alias{DBHYDRO.meta.bysite}
 \title{South Florida Water Management District online database (DBHYDRO) metadata}
 \usage{
-DBHYDRO.meta.bysite(site, type, cat = "SW", ...)
+DBHYDRO.meta.bysite(site, data_type = NA, cat = NA, freq = NA, stat = NA, ...)
 }
 \arguments{
 \item{site}{SFWMD station id}
 
-\item{type}{data type ("FLOW","STG","GATE", etc)}
-
 \item{cat}{data category ("SW","RAIN","ETP"); default is "SW"}
 
-\item{...}{other html parameters}
+\item{...}{other html parameters (i.e. "v_basin=L_OKEE", "v_dbkey_list_flag=Y&v_order_by=STATION","v_station=L001-B")}
+
+\item{type}{data type ("FLOW","STG","GATE", etc)}
 }
 \value{
 This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
