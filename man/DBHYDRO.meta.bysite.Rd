@@ -4,7 +4,15 @@
 \alias{DBHYDRO.meta.bysite}
 \title{South Florida Water Management District online database (DBHYDRO) metadata}
 \usage{
-DBHYDRO.meta.bysite(site, data_type = NA, cat = NA, freq = NA, stat = NA, ...)
+DBHYDRO.meta.bysite(
+  site,
+  data_type = NA,
+  cat = NA,
+  freq = NA,
+  stat = NA,
+  returnlink = F,
+  ...
+)
 }
 \arguments{
 \item{site}{SFWMD station id}

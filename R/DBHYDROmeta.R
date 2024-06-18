@@ -16,8 +16,13 @@
 
 
 
-DBHYDRO.meta.bysite=function(site,data_type=NA,cat=NA,freq=NA,stat=NA,...){
+DBHYDRO.meta.bysite=function(site,data_type=NA,cat=NA,freq=NA,stat=NA,returnlink=F,...){
   #station v_station=L001-B
+  # site=c("L001","L002")
+  # data_type="PU"
+  # cat="WQ"
+  # freq="DA"
+  # stat="MEAN"
 
   servfull="https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
 
@@ -30,13 +35,13 @@ DBHYDRO.meta.bysite=function(site,data_type=NA,cat=NA,freq=NA,stat=NA,...){
   qy <- list(v_data_type = data_type,
              v_category = cat,
              v_frequency = freq,
-             v_statistic_type = stat,
-             ...
+             v_statistic_type = stat
              )
 
   qy=qy[is.na(qy)==FALSE]
 
   link=paste0(paste(servfull,site.vals,sep="?"),paste(paste(names(qy),qy,sep="="),collapse="&"))
+  # shell.exec(link)
 
   # if(length(site)>1){
   #   site.vals=paste(paste0("v_site=",site),collapse="&")
@@ -48,11 +53,14 @@ DBHYDRO.meta.bysite=function(site,data_type=NA,cat=NA,freq=NA,stat=NA,...){
   #             site.vals,
   #             "&v_data_type=",type,
   #             "&v_dbkey_list_flag=Y&v_order_by=STATION",...)
-  rslt.table=read_html(link)
-  rslt.table=data.frame(html_table(rslt.table,fill=T)[[5]])
+  rslt.table=rvest::read_html(link)
+  rslt.table=data.frame(rvest::html_table(rslt.table,fill=T)[[5]])
   rslt.table=rslt.table[,2:ncol(rslt.table)]
   colnames(rslt.table)=toupper(names(rslt.table))
-  return(rslt.table)
+  if(returnlink==TRUE){print(link)}else{
+    return(rslt.table)
+  }
+
 
 }
 
