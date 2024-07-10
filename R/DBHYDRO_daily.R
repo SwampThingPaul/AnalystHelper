@@ -22,6 +22,15 @@
 
 DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target_code = "file_csv",vert_datum=1,...)
 {
+  # to test code
+  # SDATE = as.Date("2024-07-07")
+  # EDATE = as.Date("2024-07-09")
+  # DBK = c("IY031","IY032")
+  # dataonly=TRUE
+  # period = "uspec"
+  # v_target_code = "file_csv"
+  # vert_datum=NA
+
   # Legacy Code
   #Returns daily data from SFWMD DBHydro
   # DBK.val=paste("",DBK,"",collapse="/",sep="")
@@ -80,7 +89,7 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   # dat.col.names=dat.col.names[!(dat.col.names%in%c("NA",""))]
   # dat.col.names=gsub(" ",".",dat.col.names);# just incase
 
-  if(metadata$FQ%in%c("BK")){
+  if(sum(metadata$FQ%in%c("BK"))>0){
     head.val=c("DATETIME","Station","DBKEY","Data.Value","Flag","Comment")
 
     REPORT=suppressMessages(read.csv(text = res, skip = i+1,stringsAsFactors = FALSE, row.names = NULL,col.names = head.val))
