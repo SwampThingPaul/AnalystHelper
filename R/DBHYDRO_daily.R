@@ -26,6 +26,7 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   # SDATE = as.Date("2024-07-07")
   # EDATE = as.Date("2024-07-09")
   # DBK = c("IY031","IY032")
+  # DBK = c("IY031","N3466")
   # dataonly=TRUE
   # period = "uspec"
   # v_target_code = "file_csv"
@@ -83,7 +84,8 @@ DBHYDRO_daily=function(SDATE, EDATE, DBK,dataonly=TRUE,period = "uspec",v_target
   name.vals=names(metadata)
   metadata <- subset(metadata,is.na(AGENCY)==F)[,1:(ncol(metadata)-1)]
   names(metadata) <- c(name.vals[2:(length(name.vals))])
-  metadata
+  # metadata
+  if(length(unique(metadata$FQ))>1){stop("Specify only one type of DBKEY sampling frequency")}
 
   # dat.col.names=as.character(raw[i,])# dput(as.character(raw[i,]))
   # dat.col.names=dat.col.names[!(dat.col.names%in%c("NA",""))]
