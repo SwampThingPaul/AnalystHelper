@@ -77,11 +77,20 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">datetime</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-05-01 08:00:00"</span>,<span class="st">"2015-10-15 12:00:00"</span>,<span class="st">"2015-10-15 5:00:00"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">date_fun</span><span class="op">(</span><span class="va">datetime</span><span class="op">)</span>;<span class="co"># just date</span></span></span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="va">datetime</span><span class="op">)</span>;<span class="co"># just date</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2015-05-01 EST" "2015-10-15 EST" "2015-10-15 EST"</span>
-<span class="r-in"><span><span class="fu">date_fun</span><span class="op">(</span><span class="va">datetime</span>, form<span class="op">=</span><span class="st">"%F %X"</span><span class="op">)</span>; <span class="co">#include date and time</span></span></span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="va">datetime</span>, form<span class="op">=</span><span class="st">"%F %X"</span><span class="op">)</span>; <span class="co">#include date and time</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2015-05-01 08:00:00 EST" "2015-10-15 12:00:00 EST"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "2015-10-15 05:00:00 EST"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="st">"2020-05-01"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2020-05-01 EST"</span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2020-05-01"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2020-05-01 EST"</span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-05-01 12:00:00"</span>,tz<span class="op">=</span><span class="st">"EST"</span><span class="op">)</span>,form<span class="op">=</span><span class="st">"%F %H:%M:%S"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2020-05-01 12:00:00 EST"</span>
+<span class="r-in"><span><span class="fu">date.fun</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-05-01 12:00:00"</span>,tz<span class="op">=</span><span class="st">"UTC"</span><span class="op">)</span>,form<span class="op">=</span><span class="st">"%F %H:%M:%S"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2020-05-01 07:00:00 EST"</span>
 </code></pre></div>
     </div>
   </div>
