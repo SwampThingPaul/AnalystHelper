@@ -12,7 +12,7 @@ DBHYDRO.meta.bysite(
   freq = NA,
   stat = NA,
   returnlink = F,
-  ...
+  add_arg = NA
 )
 }
 \arguments{
@@ -20,7 +20,7 @@ DBHYDRO.meta.bysite(
 
 \item{cat}{data category ("SW","RAIN","ETP"); default is "SW"}
 
-\item{...}{other html parameters as a list (i.e. list(v_basin="L_OKEE", v_dbkey_list_flag="Y",v_order_by="STATION")}
+\item{add_arg}{other html parameters as a list (i.e. list(v_basin="L_OKEE", v_dbkey_list_flag="Y",v_order_by="STATION")}
 
 \item{type}{data type ("FLOW","STG","GATE", etc)}
 }
@@ -33,6 +33,7 @@ South Florida Water Management District online database (DBHYDRO) metadata
 \examples{
 # Water Quality Data
 # DBHYDRO.meta.bysite(site="S333",data_type="FLOW")
+# DBHYDRO.meta.bysite(c("S11A", "S11B", "S11C"),data_type = "FLOW",freq="DA",add_arg=list(v_agency="COE",v_order_by="STATION", v_dbkey_list_flag="Y"))
 }
 \keyword{"water}
 \keyword{quality"}

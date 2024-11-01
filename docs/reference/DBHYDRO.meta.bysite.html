@@ -58,7 +58,7 @@
 <span>  freq <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  stat <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  returnlink <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  add_arg <span class="op">=</span> <span class="cn">NA</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,7 +72,7 @@
 <dd><p>data category ("SW","RAIN","ETP"); default is "SW"</p></dd>
 
 
-<dt>...</dt>
+<dt>add_arg</dt>
 <dd><p>other html parameters as a list (i.e. list(v_basin="L_OKEE", v_dbkey_list_flag="Y",v_order_by="STATION")</p></dd>
 
 
@@ -91,6 +91,7 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Water Quality Data</span></span></span>
 <span class="r-in"><span><span class="co"># DBHYDRO.meta.bysite(site="S333",data_type="FLOW")</span></span></span>
+<span class="r-in"><span><span class="co"># DBHYDRO.meta.bysite(c("S11A", "S11B", "S11C"),data_type = "FLOW",freq="DA",add_arg=list(v_agency="COE",v_order_by="STATION", v_dbkey_list_flag="Y"))</span></span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

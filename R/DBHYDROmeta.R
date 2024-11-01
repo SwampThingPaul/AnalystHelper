@@ -3,7 +3,7 @@
 #' @param site SFWMD station id
 #' @param type data type ("FLOW","STG","GATE", etc)
 #' @param cat data category ("SW","RAIN","ETP"); default is "SW"
-#' @param ... other html parameters as a list (i.e. list(v_basin="L_OKEE", v_dbkey_list_flag="Y",v_order_by="STATION")
+#' @param add_arg other html parameters as a list (i.e. list(v_basin="L_OKEE", v_dbkey_list_flag="Y",v_order_by="STATION")
 #' @keywords "water quality"
 #' @export
 #' @return This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
@@ -13,10 +13,9 @@
 #' @examples
 #' # Water Quality Data
 #' # DBHYDRO.meta.bysite(site="S333",data_type="FLOW")
+#' # DBHYDRO.meta.bysite(c("S11A", "S11B", "S11C"),data_type = "FLOW",freq="DA",add_arg=list(v_agency="COE",v_order_by="STATION", v_dbkey_list_flag="Y"))
 
-
-
-DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat=NA,returnlink=F,...){
+DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat=NA,returnlink=F,add_arg = NA){
   ## for testing
   # site=NA#c("L001","L002")
   # station=c("L001-B","L002-B")
@@ -27,14 +26,17 @@ DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat
 
   servfull="https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
 
+
   qy <- list(v_site=site,
              v_station=station,
              v_data_type = data_type,
              v_category = cat,
              v_frequency = freq,
-             v_statistic_type = stat,
-             ...
+             v_statistic_type = stat
              )
+  if(!anyNA(add_arg)){
+    qy <- c(qy,add_arg)
+  }
 
   qy=qy[is.na(qy)==FALSE]
   if(sum(names(qy)%in%c('v_site'))==1){qy$v_site=paste(paste0("v_site=",qy$v_site),collapse="&")}
@@ -69,6 +71,7 @@ DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat
 
 
 }
+
 
 #' South Florida Water Management District online database (DBHYDRO) metadata
 #'
