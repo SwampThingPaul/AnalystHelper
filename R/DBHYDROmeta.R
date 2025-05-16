@@ -51,14 +51,17 @@ DBHYDRO.meta.bysite <-function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,st
     }
   }
 
+  station_fields <- c("v_site", "v_station")
+
   # Encode v_site and v_station if present
-  for (param in c("v_site", "v_station")) {
+  for (param in station_fields) {
+    if (param == station_fields[1]){
+      qy[[param]] <- paste(sprintf("v_site=%s", qy$v_site), collapse = "&")
+    }
     if (param %in% names(qy)) {
       qy[[param]] <- encode_query_param(param, qy[[param]])
     }
   }
-
-  station_fields <- c("v_site", "v_station")
 
   qy_station <- qy[names(qy) %in% station_fields]
   qy_other   <- qy[!names(qy) %in% station_fields]
