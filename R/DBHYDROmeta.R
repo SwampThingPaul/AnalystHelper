@@ -15,7 +15,7 @@
 #' # DBHYDRO.meta.bysite(site="S333",data_type="FLOW")
 #' # DBHYDRO.meta.bysite(c("S11A", "S11B", "S11C"),data_type = "FLOW",freq="DA",add_arg=list(v_agency="COE",v_order_by="STATION", v_dbkey_list_flag="Y"))
 
-DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat=NA,returnlink=F,add_arg = NA){
+DBHYDRO.meta.bysite <-function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat=NA,returnlink=F,add_arg = NA){
   ## for testing
   # site=NA#c("L001","L002")
   # station=c("L001-B","L002-B")
@@ -33,38 +33,46 @@ DBHYDRO.meta.bysite=function(site=NA,station=NA,data_type=NA,cat=NA,freq=NA,stat
              v_category = cat,
              v_frequency = freq,
              v_statistic_type = stat
-             )
+  )
+  # Merge any additional arguments
   if(!anyNA(add_arg)){
     qy <- c(qy,add_arg)
   }
 
-  qy=qy[is.na(qy)==FALSE]
-  if(sum(names(qy)%in%c('v_site'))==1){qy$v_site=paste(paste0("v_site=",qy$v_site),collapse="&")}
-  if(sum(names(qy)%in%c('v_station'))==1){qy$v_station=paste(paste0("v_station=",qy$v_station),collapse="&")}
+  # Remove NA entries
+  qy <- Filter(Negate(function(x) is.null(x) || is.na(x)), qy)
 
-  qy2=qy[!(names(qy)%in%c("v_site","v_station"))] # other variables
-  qy=qy[names(qy)%in%c("v_site","v_station")] # site and/or station variables only
+  # Helper function to encode vector as query string
+  encode_query_param <- function(name, value) {
+    if (length(value) > 1) {
+      paste0(name, "=", paste(value, collapse = "%2F"))  # URL-encoded "/"
+    } else {
+      paste0(name, "=", value)
+    }
+  }
 
+  # Encode v_site and v_station if present
+  for (param in c("v_site", "v_station")) {
+    if (param %in% names(qy)) {
+      qy[[param]] <- encode_query_param(param, qy[[param]])
+    }
+  }
 
-  link=paste0(paste0(servfull,"?"),paste(qy,collapse="&"),"&",paste(paste(names(qy2),qy2,sep="="),collapse="&"))
-  # shell.exec(link); # for testing
+  station_fields <- c("v_site", "v_station")
 
-  ## old basic code
-  # if(length(site)>1){
-  #   site.vals=paste(paste0("v_site=",site),collapse="&")
-  # }else{
-  #   site.vals=paste0("v_site=",site)
-  # }
-  #
-  # link=paste0("https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched?v_js_flag=Y&v_category=",cat,"&",
-  #             site.vals,
-  #             "&v_data_type=",type,
-  #             "&v_dbkey_list_flag=Y&v_order_by=STATION",...)
-  rslt.table=rvest::read_html(link)
-  rslt.table=data.frame(rvest::html_table(rslt.table,fill=T)[[5]])
-  rslt.table=rslt.table[,!(names(rslt.table)%in%c("GetData"))]
-  # rslt.table=rslt.table[,2:ncol(rslt.table)]
-  colnames(rslt.table)=toupper(names(rslt.table))
+  qy_station <- qy[names(qy) %in% station_fields]
+  qy_other   <- qy[!names(qy) %in% station_fields]
+
+  link <- paste0(
+    servfull, "?",
+    paste(qy_station, collapse = "&"),
+    if (length(qy_other) > 0) paste0("&", paste(names(qy_other), qy_other, sep = "=", collapse = "&")) else ""
+  )
+
+  rslt.table <- rvest::read_html(link)
+  rslt.table <- data.frame(rvest::html_table(rslt.table,fill=T)[[5]])
+  rslt.table <- subset(rslt.table, select = -c(GetData), drop = FALSE)
+  colnames(rslt.table) <- toupper(names(rslt.table))
   if(returnlink==TRUE){print(link)}else{
     return(rslt.table)
   }
