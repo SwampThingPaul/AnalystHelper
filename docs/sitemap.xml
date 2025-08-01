@@ -85,6 +85,15 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/insight_fetch_daily.html</loc>
+  </url>
+  <url>
+    <loc>/reference/insight_fetch_ref.html</loc>
+  </url>
+  <url>
+    <loc>/reference/insight_fetch_wq.html</loc>
+  </url>
+  <url>
     <loc>/reference/leg.fun.html</loc>
   </url>
   <url>
@@ -113,6 +122,9 @@
   </url>
   <url>
     <loc>/reference/read.access.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ref_table_name.html</loc>
   </url>
   <url>
     <loc>/reference/SalinityCalc.html</loc>

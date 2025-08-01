@@ -1,8 +1,8 @@
 Package: AnalystHelper
 Type: Package
 Title: Helper functions developed over the years to extract and format data
-Version: 0.1.5
-Date: 2024-06-14
+Version: 0.2.0
+Date: 2025-08-01
 Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"), 
     email = "pauljulianphd@gmail.com", comment = c(ORCID = "0000-0002-7617-1354")))
 Maintainer: Paul Julian <pauljulianphd@gmail.com>
@@ -11,7 +11,7 @@ Description: Contains an accumulation of functions to retrieve and analyse data.
              Some useful, some not so useful
 License: MIT + file LICENSE
 Depends: R (>= 3.0)
-Imports: RODBC,sf,raster,RCurl,zoo,rvest
+Imports: RODBC,sf,raster,RCurl,zoo,rvest, httr, jsonlite
 Encoding: UTF-8
 LazyLoad: yes
 RoxygenNote: 7.2.3
