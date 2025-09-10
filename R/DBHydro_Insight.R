@@ -205,9 +205,10 @@ insight_fetch_daily <- function(
   df <- fromJSON(json_data,flatten=T)
 
   data <- df$timeseries
-  colnames_vals <- c("DBKEY","station","source","parameter","DateTime","Data.Value","units","code","revisionDate","qualityCode")
+  colnames_vals <- c("DBKEY","Station","source","parameter","DATETIME","Data.Value","units","code","revisionDate","qualityCode")
   colnames(data) <- colnames_vals
-  data$DateTime <- as.POSIXct(data$DateTime,format="%m/%d/%Y %H:%M:%S",tz="EST")
+  data$Date <- as.POSIXct(data$DATETIME,format="%m/%d/%Y",tz="EST")
+  data$DATETIME <- as.POSIXct(data$DATETIME,format="%m/%d/%Y %H:%M:%S",tz="EST")
   tail(data)
 
   meta <- unlist(df[!(names(df)%in%"timeseries")])

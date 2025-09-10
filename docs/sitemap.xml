@@ -109,6 +109,9 @@
     <loc>/reference/N.html</loc>
   </url>
   <url>
+    <loc>/reference/plot.windrose.html</loc>
+  </url>
+  <url>
     <loc>/reference/pt_error.html</loc>
   </url>
   <url>
@@ -142,10 +145,16 @@
     <loc>/reference/st_txt.html</loc>
   </url>
   <url>
+    <loc>/reference/summary.windrose.html</loc>
+  </url>
+  <url>
     <loc>/reference/thessian_create.html</loc>
   </url>
   <url>
     <loc>/reference/TN_Combine.html</loc>
+  </url>
+  <url>
+    <loc>/reference/windrose.html</loc>
   </url>
   <url>
     <loc>/reference/WY.html</loc>
