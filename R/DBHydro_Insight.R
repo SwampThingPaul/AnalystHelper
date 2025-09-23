@@ -20,6 +20,16 @@
 #' For `test_number`, `methods`,`projects`,`matrices`,`sampleTypes` and others
 #' see the `insight_ref()` function for the corresponding tables.
 #'
+#' The function returns a data.frame from DBHydro insights with extract columns, all original data is unaltered.
+#' The following columns have been added to the data.frame
+#' \itemize{
+#'  \item `colDATETIME` = Collection datetime as a POSIXct object in the America/New_York timezone (EST/EDT)
+#'  \item `firstTriggerDATETIME` = for autosamplers, First Trigger Date as a POSIXct object in the America/New_York timezone (EST/EDT)
+#'  \item `censored` = logical `TRUE`/`FALSE` if the values was reported below the MDL
+#'  \item `HalfMDL` = if the value was reported less than the MDL than the value was replaced by half the MDL.
+#'  }
+#'
+#'
 #' For `paramGroups`
 #' \itemize{
 #'  \item O: organics
@@ -119,8 +129,8 @@ insight_fetch_wq <- function(
   # read the actual data
   data <- read.csv(text = paste(lines[data_start:length(lines)],collapse="\n" ))
 
-  data$collectDate <- date.fun(data$collectDate,form="%d-%b-%Y %R",tz="America/New_York")
-  data$firstTriggerDate <- date.fun(data$firstTriggerDate,form="%d-%b-%Y %R",tz="America/New_York")
+  data$colDATETIME <- date.fun(data$collectDate,form="%Y-%m-%d %R",tz="America/New_York")
+  data$firstTriggerDATETIME <- date.fun(data$firstTriggerDate,form="%Y-%m-%d %R",tz="America/New_York")
   data$censored <- ifelse(data$sigFigValue<0,TRUE,FALSE)
   data$HalfMDL <- ifelse(data$censored == TRUE,abs(data$sigFigValue)/2,data$sigFigValue)
 

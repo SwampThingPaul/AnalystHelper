@@ -52,6 +52,15 @@ this function using the Districts API access to retrieve data from the database
 For \code{test_number}, \code{methods},\code{projects},\code{matrices},\code{sampleTypes} and others
 see the \code{insight_ref()} function for the corresponding tables.
 
+The function returns a data.frame from DBHydro insights with extract columns, all original data is unaltered.
+The following columns have been added to the data.frame
+\itemize{
+\item \code{colDATETIME} = Collection datetime as a POSIXct object in the America/New_York timezone (EST/EDT)
+\item \code{firstTriggerDATETIME} = for autosamplers, First Trigger Date as a POSIXct object in the America/New_York timezone (EST/EDT)
+\item \code{censored} = logical \code{TRUE}/\code{FALSE} if the values was reported below the MDL
+\item \code{HalfMDL} = if the value was reported less than the MDL than the value was replaced by half the MDL.
+}
+
 For \code{paramGroups}
 \itemize{
 \item O: organics
