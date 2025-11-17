@@ -40,10 +40,8 @@ leg.fun(
 \item{leg.title}{legend title}
 }
 \value{
-This function returns water quality dataset from the SFWMD monitoring network (https://apps.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). This function assumes some familiarity with the District monitoring network and data management. .
+This function provides a custom categorical or continuous legend. Good for raster plots
 }
 \description{
 Continuous or categorical legend
 }
-\keyword{"water}
-\keyword{quality"}

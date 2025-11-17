@@ -122,7 +122,12 @@ this function using the Districts API access to retrieve data from the database<
     <h2>Details</h2>
     <p>For <code>test_number</code>, <code>methods</code>,<code>projects</code>,<code>matrices</code>,<code>sampleTypes</code> and others
 see the <code>insight_ref()</code> function for the corresponding tables.</p>
-<p>For <code>paramGroups</code></p><ul><li><p>O: organics</p></li>
+<p>The function returns a data.frame from DBHydro insights with extract columns, all original data is unaltered.
+The following columns have been added to the data.frame</p><ul><li><p><code>colDATETIME</code> = Collection datetime as a POSIXct object in the America/New_York timezone (EST/EDT)</p></li>
+<li><p><code>firstTriggerDATETIME</code> = for autosamplers, First Trigger Date as a POSIXct object in the America/New_York timezone (EST/EDT)</p></li>
+<li><p><code>censored</code> = logical <code>TRUE</code>/<code>FALSE</code> if the values was reported below the MDL</p></li>
+<li><p><code>HalfMDL</code> = if the value was reported less than the MDL than the value was replaced by half the MDL.</p></li>
+</ul><p>For <code>paramGroups</code></p><ul><li><p>O: organics</p></li>
 <li><p>N: nutrients</p></li>
 <li><p>M: metals</p></li>
 <li><p>P: physical parameters</p></li>
