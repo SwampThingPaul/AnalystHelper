@@ -20,10 +20,11 @@ leg.fun <- function(b,pal,leg.title,
   leg.type <- match.arg(leg.type)
 
   stopifnot(is.numeric(b), length(b) >= 2)
-  if (!is.null(n.bks) && n.bks != length(b) - 1) {
-    warning("n.bks does not match length(b)-1; using length(b)-1")
-    n.bks <- length(b) - 1
-  }
+  # if (!is.null(n.bks) && n.bks != length(b) - 1) {
+  #   warning("n.bks does not match length(b)-1; using length(b)-1")
+  #   n.bks <- length(b) - 1
+  # }
+  if(is.null(n.bks)){n.bks <- length(b)-1}
   l.b <- if(is.null(b)==T){n.bks}else{length(b)}
   mid.v.val <- if(is.null(mid.v.val)){bot.val+(top.val-bot.val)/2}else{mid.v.val}
   mid.val <- if(is.null(mid.val)){x.min+(x.max-x.min)/2}else{mid.val}
