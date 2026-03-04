@@ -1,141 +1,245 @@
-
-#' @title Water Quality Data retrieval from South Florida Water Management District online database (DBHYDRO)
-
-#' @param startDate Required as a Date `as.Date` or other format (i.e. `as.POSIXct`)
-#' @param endDate Required as a Date `as.Date` or other format (i.e. `as.POSIXct`)
-#' @param station_id SFWMD Water Quality Monitoring location <https://insights.sfwmd.gov/#/mappage/site>
-#' @param test_number The DBHydro 1 to 4 digit test number, see details
-#' @param methods A 1 to 3 letter code for the method of sample collection, see details
-#' @param projects DBHydro water quality project codes
-#' @param matrices A 1 to 3 letter code for the sampling material
-#' @param paramGroups Letter code for the parameter group, see details
-#' @param sampleTypes A letter code defining sample and other type of samples (i.e. QC/QC)
-#' @param reportType default is `timeseries`
-#' @param format default is `csv`
-#' @param ... not used, to pass argument along to other functions, in the future.
+#' Build a DBHydro Insights water-quality (chem) query payload
 #'
-#' @description using the new data management platform DBHydro Insights,
-#'  this function using the Districts API access to retrieve data from the database
+#' @description
+#' Constructs a nested list formatted for use as the `query` object in
+#' DBHydro Insights chemistry/water-quality report requests (e.g.,
+#' `/v1/insights-data/chem/report/data`). The output is intended to be
+#' JSON-encoded and sent as a request body such as `list(query = <result>)`.
+#'
 #' @details
-#' For `test_number`, `methods`,`projects`,`matrices`,`sampleTypes` and others
-#' see the `insight_ref()` function for the corresponding tables.
+#' The function standardizes common filter fields (`parameters`, `methods`,
+#' `projects`, `matrices`, `paramGroups`) into lists. Locations are
+#' formatted as a list of `list(name = <...>, type = <...>)` objects.
 #'
-#' The function returns a data.frame from DBHydro insights with extract columns, all original data is unaltered.
-#' The following columns have been added to the data.frame
-#' \itemize{
-#'  \item `colDATETIME` = Collection datetime as a POSIXct object in the America/New_York timezone (EST/EDT)
-#'  \item `firstTriggerDATETIME` = for autosamplers, First Trigger Date as a POSIXct object in the America/New_York timezone (EST/EDT)
-#'  \item `censored` = logical `TRUE`/`FALSE` if the values was reported below the MDL
-#'  \item `HalfMDL` = if the value was reported less than the MDL than the value was replaced by half the MDL.
-#'  }
+#' If `locations` is exactly `"ALL"`, then the location type is forced to
+#' `"ALL"` (regardless of `location_type`).
 #'
+#' Additional filters supported by the API (e.g., `testNumbers`, `sampleTypes`,
+#' `paramGroups`, etc.) can be provided via `...` and will be included in the
+#' returned list as-is (after the function adds its standard fields).
 #'
-#' For `paramGroups`
-#' \itemize{
-#'  \item O: organics
-#'  \item N: nutrients
-#'  \item M: metals
-#'  \item P: physical parameters
-#'  \item B: biological
-#'  \item F: field
-#'  \item MI: major ions
-#'  \item MIS: miscellaneous
-#'  }
+#' @param locations Character vector of location identifiers (e.g., station codes).
+#'   Use `"ALL"` to request all locations.
+#' @param location_type Character scalar giving the location identifier type used when
+#'   `locations` is not `"ALL"`. Common values include `"STATION"` (default),
+#'   and other API-supported types.
+#' @param parameters Character vector of parameter identifiers, or `"ALL"`.
+#' @param methods Character vector of method identifiers, or `"ALL"`.
+#' @param projects Character vector of project identifiers, or `"ALL"`.
+#' @param matrices Character vector of matrix identifiers, or `"ALL"`.
+#' @param paramGroups Character vector of parameter-group identifiers, or `"ALL"`.
+#' @param testNumbers Optional numeric vector (or list) of test numbers to filter by.
+#'   If `NULL` (default), the field is omitted from the query payload.
+#' @param ... Additional named query elements to include in the payload.
 #'
-#' @importFrom httr POST add_headers status_code
-#' @importFrom jsonlite toJSON
+#' @return
+#' A nested `list` representing the query payload. This object is suitable for JSON
+#' encoding and inclusion in a request body such as `list(query = insight_wq_query(...))`.
+#'
+#' @examples
+#' # Single station, include an additional filter (testNumbers)
+#' # single test number
+#' q1 <- insight_wq_query(locations = "S333", testNumbers = 25)
+#'
+#' # Multiple stations
+#' q2 <- insight_wq_query(
+#'   locations = c("S333", "G722"),
+#'   testNumbers = c(25)
+#' )
+#'
+#' # All locations (location type forced to ALL)
+#' q3 <- insight_wq_query(locations = "ALL")
+#'
 #' @export
+insight_wq_query <- function (locations = "ALL",
+                              location_type = "STATION",
+                              parameters = "ALL",
+                              methods = "ALL",
+                              projects = "ALL",
+                              matrices = "ALL",
+                              paramGroups = "ALL",
+                              testNumbers = NULL,
+                              ...) {
+
+  # helper: normalize scalar/vector/list to list of numerics
+  as_numeric_list <- function(x) {
+    if (is.null(x)) return(NULL)
+    if (is.list(x)) x <- unlist(x, recursive = TRUE, use.names = FALSE)
+    x <- as.numeric(x)
+    x <- x[!is.na(x)]
+    as.list(x)
+  }
+
+  x <- list(
+    parameters = as.list(parameters),
+    methods = as.list(methods),
+    projects = as.list(projects),
+    matrices = as.list(matrices),
+    paramGroups = as.list(paramGroups),
+    ...
+  )
+
+  # only include testNumbers if provided
+  tn <- as_numeric_list(testNumbers)
+  if (!is.null(tn) && length(tn) > 0) {
+    x[["testNumbers"]] <- tn
+  }
+
+  # location formatting
+  if (length(locations) == 1 && locations == "ALL") {
+    x[["locations"]] <- list(list(name = locations, type = "ALL"))
+  } else {
+    x[["locations"]] <- lapply(locations, function(loc) {
+      list(name = loc, type = location_type)
+    })
+  }
+
+  x
+}
+
+#' Fetch DBHydro Insights water-quality (chemistry) time series data
+#'
+#' @description
+#' Queries the SFWMD DBHydro Insights Chemistry reporting endpoint and returns a
+#' parsed `data.frame` of water-quality time series results for a station and
+#' (optionally) one or more test numbers. The function sends a POST request with a
+#' JSON body containing the query payload produced by [insight_wq_query()].
+#'
+#' @details
+#' The function:
+#' \itemize{
+#'   \item Validates that `startDate <= endDate`.
+#'   \item Formats `startDate` and `endDate` as `YYYYMMDD`.
+#'   \item Builds a query payload using [insight_wq_query()] with
+#'         `locations = station_id` and `testNumbers = test_number`.
+#'   \item Calls `https://insightsdata.api.sfwmd.gov/v1/insights-data/chem/report/data`
+#'         using [httr::POST()] with query parameters
+#'         `reportType`, `format="json"`, `startDate`, and `endDate`.
+#'   \item Parses the JSON response using [jsonlite::fromJSON()]
+#'         and extracts `$timeseries`.
+#'   \item Coerces `sigfigValue` to numeric and derives convenience fields:
+#'         `colDATETIME`, `firstTriggerDATETIME`, `censored`, and `HalfMDL`.
+#' }
+#'
+#' The derived fields are computed as:
+#' \itemize{
+#'   \item `censored`: `TRUE` if `sigfigValue < 0`, else `FALSE`.
+#'   \item `HalfMDL`: if censored, `abs(sigfigValue) / 2`, else `sigfigValue`.
+#' }
+#'
+#' This function uses a helper `date.fun()` to parse date-time strings to POSIXct
+#' in the `"America/New_York"` timezone. Ensure `date.fun()` is available
+#' (e.g., exported by your package or attached in the calling environment).
+#'
+#' @param startDate Start date. Can be a `Date` object or a character string
+#'   coercible by `as.Date()` (e.g., `"2001-10-05"`).
+#' @param endDate End date. Can be a `Date` object or a character string
+#'   coercible by `as.Date()` (e.g., `"2002-03-04"`).
+#' @param station_id Character scalar station identifier (e.g., `"S333"`).
+#'   Passed to [insight_wq_query()] as `locations`.
+#' @param test_number Numeric, integer, character, or list. Test number(s) used to
+#'   filter results; passed to [insight_wq_query()] as `testNumbers`.
+#'   If `NA` values are present, a warning is emitted.
+#' @param reportType Character scalar report type for the API. Defaults to
+#'   `"timeseries"`. Other values may be supported by the API.
+#' @param ... Additional named query elements passed to [insight_wq_query()].
+#'   Use this to include other filters supported by the endpoint (e.g., `parameters`,
+#'   `methods`, `projects`, `matrices`, `paramGroups`, etc.).
+#'
+#' @return
+#' A `data.frame` containing the `timeseries` object returned by the API,
+#' with additional derived columns:
+#' \itemize{
+#'   \item `colDATETIME` (POSIXct): parsed from `collectDate`.
+#'   \item `firstTriggerDATETIME` (POSIXct): parsed from `firstTriggerDate`.
+#'   \item `censored` (logical): indicates `sigfigValue < 0`.
+#'   \item `HalfMDL` (numeric): half the absolute value for censored results, else the value.
+#' }
+#'
+#' @seealso
+#' [insight_wq_query()] for building the query payload.
+#'
 #' @examples
 #' \dontrun{
-#' sdate <- as.Date("2001-05-01");
-#' edate <- as.Date("2002-05-01");
-#' dat <- insight_fetch_wq(sdate,edate,c("S12A","S12B"),"25")
+#' # Basic request for a station and a single test number
+#' df <- insight_fetch_wq(
+#'   startDate   = "2001-10-05",
+#'   endDate     = "2002-03-04",
+#'   station_id  = "S333",
+#'   test_number = 25
+#' )
 #'
-#' # retrieve metadata
-#' attr(dat,"metadata")
+#' # Pass additional filters via ...
+#' df2 <- insight_fetch_wq(
+#'   startDate   = as.Date("2001-10-05"),
+#'   endDate     = as.Date("2002-03-04"),
+#'   station_id  = "S333",
+#'   test_number = c(25, 26),
+#'   parameters  = "ALL",
+#'   matrices    = "ALL"
+#' )
 #' }
+#'
+#' @export
 insight_fetch_wq <- function(
     startDate,
     endDate,
     station_id,
     test_number,
-    methods = NULL,projects = NULL,
-    matrices = NULL,paramGroups = NULL,
-    sampleTypes = NULL,
-    reportType = "timeseries",format = "csv", ...
+    reportType = "timeseries", ...
 ){
+
   if(startDate>endDate){stop("Check dates date_min can't be after date_max")}
   if(anyNA(test_number)) {warning("`test_number` is missing or contains NA values.")}
 
   startDate_fmt <- format(as.Date(startDate), "%Y%m%d")
   endDate_fmt <- format(as.Date(endDate), "%Y%m%d")
 
-  url <- paste0(
-    "https://insightsdata.api.sfwmd.gov/v1/insights-data/chem/report/data?",
-    "reportType=", reportType,
-    "&format=", format,
-    "&startDate=", startDate_fmt,
-    "&endDate=", endDate_fmt
-  )
+  query <- insight_wq_query(locations = station_id, testNumbers = test_number, ...)
 
-  # Build query lists
-  loc_list <- lapply(station_id, function(loc) list(name = loc, type = "STATION"))
-
-  # Helper to include argument only if not NULL or empty
-  safe_list <- function(x) {
-    if (is.null(x) || length(x) == 0) return(NULL)
-    as.list(as.character(x))
-  }
-
-  body_list <- list(
-    locations = loc_list,
-    parameters = safe_list(test_number),
-    methods = safe_list(methods),
-    projects = safe_list(projects),
-    matrices = safe_list(matrices),
-    paramGroups = safe_list(paramGroups),
-    sampleTypes = safe_list(sampleTypes),
-    ...
-  )
-
-  # Remove NULL entries (arguments not passed)
-  body_list <- body_list[!sapply(body_list, is.null)]
-
-  body <- list(query = body_list)
+  url <- "https://insightsdata.api.sfwmd.gov/v1/insights-data/chem/report/data"
 
   res <- POST(
     url,
-    add_headers(`Content-Type` = "application/json"),
-    body = toJSON(body, auto_unbox = TRUE),
-    encode = "raw"
+    query = list(
+      reportType = reportType,
+      format = "json",
+      startDate = startDate_fmt,
+      endDate = endDate_fmt
+    ),
+    body = list(query = query),
+    encode = "json"
   )
+
+  # error handling
+  stop_for_status(res)
 
   if (status_code(res) != 200) {
     stop("Request failed with status: ", httr::status_code(res))
   }
 
-  csv <- content(res, as = "text", encoding = "UTF-8")
-  lines <- readLines(textConnection(csv))
+  # extract and parse
+  txt <- content(res, as = "text", encoding = "UTF-8")
+  obj <- fromJSON(txt, flatten = TRUE)
 
-  # Identify where the actual CSV header begins (usually first non-`#` line)
-  head_idx <- which(!startsWith(lines, "#"))
-  head_idx_diff <- c(0,diff(head_idx))
+  # pull timeseries
+  ts <- obj$timeseries
 
-  data_start <- head_idx[head_idx_diff>1]#which(!startsWith(lines, "#"))[1]
-
-  # Extract metadata/header separately
-  metadata <- lines[1:(data_start - 1)]
-  metadata
-  # read the actual data
-  data <- read.csv(text = paste(lines[data_start:length(lines)],collapse="\n" ))
+  # if timeseries is a list, ts may already be a data.frame when flattened.
+  # Otherwise, you can coerce:
+  if (!is.data.frame(ts)) {
+    ts <- as.data.frame(ts, stringsAsFactors = FALSE)
+  }
+  data <- ts
+  data$sigfigValue <- as.numeric(data$sigfigValue)
 
   data$colDATETIME <- date.fun(data$collectDate,form="%Y-%m-%d %R",tz="America/New_York")
   data$firstTriggerDATETIME <- date.fun(data$firstTriggerDate,form="%Y-%m-%d %R",tz="America/New_York")
-  data$censored <- ifelse(data$sigFigValue<0,TRUE,FALSE)
-  data$HalfMDL <- ifelse(data$censored == TRUE,abs(data$sigFigValue)/2,data$sigFigValue)
+  data$censored <- ifelse(data$sigfigValue<0,TRUE,FALSE)
+  data$HalfMDL <- ifelse(data$censored == TRUE,abs(data$sigfigValue)/2,data$sigfigValue)
 
-  # store metadata as attribute
-  attr(data, "metadata") <- metadata
+  meta <- unlist(obj[!(names(obj)%in%"timeseries")])
+  attr(data, "metadata") <- meta
   return(data)
 
 }
@@ -276,3 +380,116 @@ ref_table_name <- c("agency","basin","qualityCode","dataType","frequency","group
                     "collectionMethod","dataInvestigation","qualifier","discharge","genderCode",
                     "matrix","programType","sampleType","samplingPurpose","species","tissueType",
                     "upDwnStream","validationLevel","weatherCode")
+
+
+#' Retrieve DBHYDRO Insights DBKEY metadata for multiple DBKEYs (safe)
+#'
+#' Queries the SFWMD DBHYDRO Insights API `dbkeyInfo` endpoint for one or
+#' more DBKEYs and returns a combined data frame with one row per requested DBKEY.
+#'
+#' Unlike a "fail-fast" implementation, this function is *safe* for batch pulls:
+#' it will continue processing even if one or more DBKEY requests fail. For each
+#' DBKEY, the returned row includes `request_ok` and `error_message`
+#' indicating whether that specific request succeeded.
+#'
+#' For successful requests, the JSON response is flattened and any `NULL`
+#' elements are converted to `NA` prior to coercion into a 1-row data frame.
+#' The output always includes `dbkey_requested` to preserve the original
+#' input DBKEY, even if the API response is missing or malformed.
+#'
+#' @param dbkeys A character or numeric vector of DBKEY identifiers. Each DBKEY
+#'   is requested individually (one HTTP request per DBKEY).
+#' @param timeout_sec Numeric scalar. Request timeout in seconds passed to
+#'   `httr::timeout()`. Default is 60.
+#' @param pause_sec Numeric scalar. Optional delay (in seconds) between requests
+#'   to reduce the chance of rate-limiting. Default is 0 (no pause).
+#'
+#' @return A `data.frame` with one row per requested DBKEY. For successful
+#'   requests, columns include metadata fields returned by the API (e.g.,
+#'   `station`, `dataType`, `frequency`, `startDate`,
+#'   `endDate`, coordinates, etc.). The output always contains:
+#'   \describe{
+#'     \item{`dbkey_requested`}{DBKEY value submitted in the request.}
+#'     \item{`request_ok`}{Logical flag indicating if that request succeeded.}
+#'     \item{`error_message`}{Character error message when `request_ok = FALSE`; otherwise `NA`.}
+#'   }
+#'
+#' @details
+#' This function performs one request per DBKEY and then row-binds the results.
+#' Because API responses can vary slightly across DBKEYs, it aligns columns across
+#' all returned rows, filling missing columns with `NA` prior to binding.
+#'
+#' @seealso [httr::GET()], [httr::timeout()],
+#'   [httr::stop_for_status()], [jsonlite::fromJSON()]
+#'
+#' @importFrom httr GET timeout stop_for_status content
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#' \dontrun{
+#' # Successful and failing DBKEYs can be mixed; failures are captured in output
+#' meta <- insight_dbkey_meta(c("91510", "BADKEY", "91512"), pause_sec = 0.1)
+#'
+#' # Inspect results
+#' head(meta)
+#'
+#' # See which DBKEYs failed
+#' subset(meta, !request_ok)
+#' }
+#'
+#' @export
+insight_dbkey_meta <- function(dbkeys, timeout_sec = 60, pause_sec = 0) {
+  # input validation
+  dbkeys <- unlist(dbkeys, use.names = FALSE)
+  dbkeys <- as.character(dbkeys)
+  if (!length(dbkeys)) stop("`dbkeys` must contain at least one DBKEY.")
+
+  fetch_one_safe <- function(dbkey) {
+    url <- paste0("https://insightsdata.api.sfwmd.gov/v1/insights-data/dbkeyInfo/", dbkey)
+
+    # optional pause to be polite / avoid rate limits
+    if (pause_sec > 0) Sys.sleep(pause_sec)
+
+    out <- tryCatch({
+      resp <- GET(url, timeout(timeout_sec))
+      stop_for_status(resp)
+
+      txt <- content(resp, as = "text", encoding = "UTF-8")
+      x <- fromJSON(txt, flatten = TRUE)
+
+      # Convert NULL to NA
+      x[x %in% list(NULL)] <- NA
+
+      df <- as.data.frame(x, stringsAsFactors = FALSE)
+
+      df$request_ok <- TRUE
+      df$error_message <- NA_character_
+      df$dbkey_requested <- as.character(dbkey)
+      df
+    }, error = function(e) {
+      data.frame(
+        dbkey = NA_character_,
+        request_ok = FALSE,
+        error_message = conditionMessage(e),
+        dbkey_requested = as.character(dbkey),
+        stringsAsFactors = FALSE
+      )
+    })
+
+    out
+  }
+
+  dfs <- lapply(dbkeys, fetch_one_safe)
+
+  # Combine while allowing different columns across responses
+  all_names <- unique(unlist(lapply(dfs, names)))
+  dfs_aligned <- lapply(dfs, function(d) {
+    missing <- setdiff(all_names, names(d))
+    if (length(missing)) d[missing] <- NA
+    d[all_names]
+  })
+
+  out <- do.call(rbind, dfs_aligned)
+  rownames(out) <- NULL
+  out
+}

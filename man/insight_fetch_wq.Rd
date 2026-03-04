@@ -2,84 +2,102 @@
 % Please edit documentation in R/DBHydro_Insight.R
 \name{insight_fetch_wq}
 \alias{insight_fetch_wq}
-\title{Water Quality Data retrieval from South Florida Water Management District online database (DBHYDRO)}
+\title{Fetch DBHydro Insights water-quality (chemistry) time series data}
 \usage{
 insight_fetch_wq(
   startDate,
   endDate,
   station_id,
   test_number,
-  methods = NULL,
-  projects = NULL,
-  matrices = NULL,
-  paramGroups = NULL,
-  sampleTypes = NULL,
   reportType = "timeseries",
-  format = "csv",
   ...
 )
 }
 \arguments{
-\item{startDate}{Required as a Date \code{as.Date} or other format (i.e. \code{as.POSIXct})}
+\item{startDate}{Start date. Can be a \code{Date} object or a character string
+coercible by \code{as.Date()} (e.g., \code{"2001-10-05"}).}
 
-\item{endDate}{Required as a Date \code{as.Date} or other format (i.e. \code{as.POSIXct})}
+\item{endDate}{End date. Can be a \code{Date} object or a character string
+coercible by \code{as.Date()} (e.g., \code{"2002-03-04"}).}
 
-\item{station_id}{SFWMD Water Quality Monitoring location \url{https://insights.sfwmd.gov/#/mappage/site}}
+\item{station_id}{Character scalar station identifier (e.g., \code{"S333"}).
+Passed to \code{\link[=insight_wq_query]{insight_wq_query()}} as \code{locations}.}
 
-\item{test_number}{The DBHydro 1 to 4 digit test number, see details}
+\item{test_number}{Numeric, integer, character, or list. Test number(s) used to
+filter results; passed to \code{\link[=insight_wq_query]{insight_wq_query()}} as \code{testNumbers}.
+If \code{NA} values are present, a warning is emitted.}
 
-\item{methods}{A 1 to 3 letter code for the method of sample collection, see details}
+\item{reportType}{Character scalar report type for the API. Defaults to
+\code{"timeseries"}. Other values may be supported by the API.}
 
-\item{projects}{DBHydro water quality project codes}
-
-\item{matrices}{A 1 to 3 letter code for the sampling material}
-
-\item{paramGroups}{Letter code for the parameter group, see details}
-
-\item{sampleTypes}{A letter code defining sample and other type of samples (i.e. QC/QC)}
-
-\item{reportType}{default is \code{timeseries}}
-
-\item{format}{default is \code{csv}}
-
-\item{...}{not used, to pass argument along to other functions, in the future.}
+\item{...}{Additional named query elements passed to \code{\link[=insight_wq_query]{insight_wq_query()}}.
+Use this to include other filters supported by the endpoint (e.g., \code{parameters},
+\code{methods}, \code{projects}, \code{matrices}, \code{paramGroups}, etc.).}
+}
+\value{
+A \code{data.frame} containing the \code{timeseries} object returned by the API,
+with additional derived columns:
+\itemize{
+\item \code{colDATETIME} (POSIXct): parsed from \code{collectDate}.
+\item \code{firstTriggerDATETIME} (POSIXct): parsed from \code{firstTriggerDate}.
+\item \code{censored} (logical): indicates \code{sigfigValue < 0}.
+\item \code{HalfMDL} (numeric): half the absolute value for censored results, else the value.
+}
 }
 \description{
-using the new data management platform DBHydro Insights,
-this function using the Districts API access to retrieve data from the database
+Queries the SFWMD DBHydro Insights Chemistry reporting endpoint and returns a
+parsed \code{data.frame} of water-quality time series results for a station and
+(optionally) one or more test numbers. The function sends a POST request with a
+JSON body containing the query payload produced by \code{\link[=insight_wq_query]{insight_wq_query()}}.
 }
 \details{
-For \code{test_number}, \code{methods},\code{projects},\code{matrices},\code{sampleTypes} and others
-see the \code{insight_ref()} function for the corresponding tables.
-
-The function returns a data.frame from DBHydro insights with extract columns, all original data is unaltered.
-The following columns have been added to the data.frame
+The function:
 \itemize{
-\item \code{colDATETIME} = Collection datetime as a POSIXct object in the America/New_York timezone (EST/EDT)
-\item \code{firstTriggerDATETIME} = for autosamplers, First Trigger Date as a POSIXct object in the America/New_York timezone (EST/EDT)
-\item \code{censored} = logical \code{TRUE}/\code{FALSE} if the values was reported below the MDL
-\item \code{HalfMDL} = if the value was reported less than the MDL than the value was replaced by half the MDL.
+\item Validates that \code{startDate <= endDate}.
+\item Formats \code{startDate} and \code{endDate} as \code{YYYYMMDD}.
+\item Builds a query payload using \code{\link[=insight_wq_query]{insight_wq_query()}} with
+\code{locations = station_id} and \code{testNumbers = test_number}.
+\item Calls \verb{https://insightsdata.api.sfwmd.gov/v1/insights-data/chem/report/data}
+using \code{\link[httr:POST]{httr::POST()}} with query parameters
+\code{reportType}, \code{format="json"}, \code{startDate}, and \code{endDate}.
+\item Parses the JSON response using \code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}}
+and extracts \verb{$timeseries}.
+\item Coerces \code{sigfigValue} to numeric and derives convenience fields:
+\code{colDATETIME}, \code{firstTriggerDATETIME}, \code{censored}, and \code{HalfMDL}.
 }
 
-For \code{paramGroups}
+The derived fields are computed as:
 \itemize{
-\item O: organics
-\item N: nutrients
-\item M: metals
-\item P: physical parameters
-\item B: biological
-\item F: field
-\item MI: major ions
-\item MIS: miscellaneous
+\item \code{censored}: \code{TRUE} if \code{sigfigValue < 0}, else \code{FALSE}.
+\item \code{HalfMDL}: if censored, \code{abs(sigfigValue) / 2}, else \code{sigfigValue}.
 }
+
+This function uses a helper \code{date.fun()} to parse date-time strings to POSIXct
+in the \code{"America/New_York"} timezone. Ensure \code{date.fun()} is available
+(e.g., exported by your package or attached in the calling environment).
 }
 \examples{
 \dontrun{
-sdate <- as.Date("2001-05-01");
-edate <- as.Date("2002-05-01");
-dat <- insight_fetch_wq(sdate,edate,c("S12A","S12B"),"25")
+# Basic request for a station and a single test number
+df <- insight_fetch_wq(
+  startDate   = "2001-10-05",
+  endDate     = "2002-03-04",
+  station_id  = "S333",
+  test_number = 25
+)
 
-# retrieve metadata
-attr(dat,"metadata")
+# Pass additional filters via ...
+df2 <- insight_fetch_wq(
+  startDate   = as.Date("2001-10-05"),
+  endDate     = as.Date("2002-03-04"),
+  station_id  = "S333",
+  test_number = c(25, 26),
+  parameters  = "ALL",
+  matrices    = "ALL"
+)
 }
+
+}
+\seealso{
+\code{\link[=insight_wq_query]{insight_wq_query()}} for building the query payload.
 }

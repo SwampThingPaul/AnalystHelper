@@ -1,8 +1,8 @@
 Package: AnalystHelper
 Type: Package
 Title: Helper functions developed over the years to extract and format data
-Version: 0.2.0
-Date: 2025-08-01
+Version: 0.2.1
+Date: 2026-03-04
 Authors@R: c(person("Paul", "Julian", role = c("aut", "cre"), 
     email = "pauljulianphd@gmail.com", comment = c(ORCID = "0000-0002-7617-1354")))
 Maintainer: Paul Julian <pauljulianphd@gmail.com>
