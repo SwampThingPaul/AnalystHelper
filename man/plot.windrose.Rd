@@ -23,7 +23,7 @@
 )
 }
 \arguments{
-\item{x}{a \code{windrose-class} object}
+\item{x}{A \code{windrose} object created by \code{\link[=windrose]{windrose()}}.}
 
 \item{type}{The thing to be plotted, either the number of counts in the angle
 interval, the mean of the values in the interval, the median of the values, or

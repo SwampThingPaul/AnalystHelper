@@ -7,7 +7,7 @@
 \method{summary}{windrose}(object, ...)
 }
 \arguments{
-\item{object}{object A \linkS4class{windrose} object}
+\item{object}{object A \code{windrose} object created by \code{\link[=windrose]{windrose()}}}
 
 \item{...}{Further arguments passed to or from other methods}
 }
@@ -15,5 +15,5 @@
 select summary stats as text
 }
 \description{
-Summarizes some of the data in a \linkS4class{windrose} object, like in oce package
+Summarizes some of the data in a \code{windrose} object created by \code{\link[=windrose]{windrose()}}, like in oce package
 }

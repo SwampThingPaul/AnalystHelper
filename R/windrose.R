@@ -21,6 +21,7 @@
 #'  }
 #' @export
 #'
+#'
 #' @examples
 #' \dontrun{
 #' library(reshape2)
@@ -90,7 +91,7 @@ windrose=function(x,y,data, dtheta = 15){
 #' @title Plot a windrose Object
 #' @description plot a windrose objet simialr to `oce::windrose.plot` but  a paired down customizable version
 #'
-#' @param x a `windrose-class` object
+#' @param x A `windrose` object created by [windrose()].
 #' @param type The thing to be plotted, either the number of counts in the angle
 #' interval, the mean of the values in the interval, the median of the values, or
 #' a [fivenum()] representation of the values.
@@ -243,8 +244,8 @@ plot.windrose = function(
 
 
 #' @title Summarize a windrose Object
-#' @description Summarizes some of the data in a [windrose-class] object, like in oce package
-#' @param object object A [windrose-class] object
+#' @description Summarizes some of the data in a `windrose` object created by [windrose()], like in oce package
+#' @param object object A `windrose` object created by [windrose()]
 #' @param ... Further arguments passed to or from other methods
 #'
 #' @return select summary stats as text
