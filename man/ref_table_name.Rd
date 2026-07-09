@@ -16,7 +16,7 @@ A character vector of available reference table names as of August 2025 from \ur
 \examples{
 \dontrun{
 ref_table_name
-insight_fetch_ref(ref_table_name[1])  # e.g., "agency"; list of agencies
+# insight_fetch_ref(ref_table_name[1])  # e.g., "agency"; list of agencies
 }
 }
 \keyword{data}

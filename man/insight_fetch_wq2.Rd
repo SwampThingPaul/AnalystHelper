@@ -47,14 +47,3 @@ data.frame with metadata in attr(x, "metadata")
 \description{
 Fetch SFWMD Insights water quality data (CSV legacy or JSON ts)
 }
-\examples{
-\dontrun{
-sdate <- as.Date("2001-05-01");
-edate <- as.Date("2002-05-01");
-dat <- insight_fetch_wq(sdate,edate,c("S12A","S12B"),"25")
-
-# retrieve metadata
-attr(dat,"metadata")
-}
-
-}

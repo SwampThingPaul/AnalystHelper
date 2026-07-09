@@ -15,15 +15,6 @@
 #' @importFrom utils read.csv
 #'
 #' @return data.frame with metadata in attr(x, "metadata")
-#' @examples
-#' \dontrun{
-#' sdate <- as.Date("2001-05-01");
-#' edate <- as.Date("2002-05-01");
-#' dat <- insight_fetch_wq(sdate,edate,c("S12A","S12B"),"25")
-#'
-#' # retrieve metadata
-#' attr(dat,"metadata")
-#' }
 #'
 insight_fetch_wq2 <- function(
     startDate,
@@ -270,9 +261,9 @@ insight_fetch_wq2 <- function(
     data
 }
 
-
-sdate <- as.Date("2001-05-01");
-edate <- as.Date("2002-05-01");
-dat <- insight_fetch_wq2(sdate,edate,c("S12A","S12B","S333"),"25",methods = "ALL",api = "json")
-
-unique(dat$method)
+#
+# sdate <- as.Date("2001-05-01");
+# edate <- as.Date("2002-05-01");
+# dat <- insight_fetch_wq2(sdate,edate,c("S12A","S12B","S333"),"25",methods = "ALL",api = "json")
+#
+# unique(dat$method)

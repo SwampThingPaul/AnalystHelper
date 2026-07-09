@@ -372,7 +372,7 @@ insight_fetch_ref <- function(table_name){
 #' @examples
 #' \dontrun{
 #' ref_table_name
-#' insight_fetch_ref(ref_table_name[1])  # e.g., "agency"; list of agencies
+#' # insight_fetch_ref(ref_table_name[1])  # e.g., "agency"; list of agencies
 #' }
 
 ref_table_name <- c("agency","basin","qualityCode","dataType","frequency","group","project","offsets",
